@@ -37,130 +37,6 @@
 </head>
 
 <body>
-        <script>
-(function () {
-  'use strict';
-
-  /* ------------------------------------------------------------------
-     Copy full <pre> text for each .copy-container / .copy-btn pair
-     ------------------------------------------------------------------ */
-
-  // Fallback for browsers / non-HTTPS contexts without navigator.clipboard
-  function fallbackCopy(text) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.position = 'fixed';
-    ta.style.top = '-9999px';
-    ta.style.left = '-9999px';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-
-    var selection = document.getSelection();
-    var previousRange = selection && selection.rangeCount > 0
-      ? selection.getRangeAt(0)
-      : null;
-
-    ta.select();
-    ta.setSelectionRange(0, ta.value.length);
-
-    var ok = false;
-    try {
-      ok = document.execCommand('copy');
-    } catch (e) {
-      ok = false;
-    }
-
-    document.body.removeChild(ta);
-    if (previousRange && selection) {
-      selection.removeAllRanges();
-      selection.addRange(previousRange);
-    }
-
-    if (!ok) {
-      throw new Error('execCommand("copy") failed');
-    }
-  }
-
-  function copyText(text) {
-    // Modern async API (requires HTTPS or localhost)
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).catch(function () {
-        fallbackCopy(text); // try the old way if the API rejects
-      });
-    }
-    // Older browsers / http://
-    return new Promise(function (resolve) {
-      fallbackCopy(text);
-      resolve();
-    });
-  }
-
-  // Grab the real code from the <pre>:
-  //  - textContent  -> decoded markup (<section ...>), whitespace/indent kept
-  //  - innerHTML    -> escaped markup (&lt;section ...&gt;)
-  // We use textContent so the pasted result is usable code.
-  function getPreText(pre) {
-    var text = pre.textContent || '';
-    return text
-      .replace(/^\s*\n/, '')   // drop the leading newline after <pre>
-      .replace(/\s+$/, '')     // drop trailing whitespace/newline
-      .replace(/\t/g, '  ');   // optional: normalise tabs to 2 spaces
-  }
-
-  function initCopyButtons() {
-    var buttons = document.querySelectorAll('.copy-btn');
-
-    Array.prototype.forEach.call(buttons, function (btn) {
-      var container = btn.closest('.copy-container') || btn.parentNode;
-      var pre = container ? container.querySelector('pre') : null;
-      if (!pre) return;
-
-      var originalLabel = btn.textContent.trim() || 'Copy';
-      var timer = null;
-
-      btn.addEventListener('click', function () {
-        var text = getPreText(pre);
-
-        copyText(text)
-          .then(function () {
-            setState(btn, 'Copied!', true);
-          })
-          .catch(function (err) {
-            console.error('Copy failed:', err);
-            setState(btn, 'Press Ctrl+C', false);
-            // Last resort: select the code so the user can copy manually
-            try {
-              var range = document.createRange();
-              range.selectNodeContents(pre);
-              var sel = window.getSelection();
-              sel.removeAllRanges();
-              sel.addRange(range);
-            } catch (e) { /* ignore */ }
-          });
-      });
-
-      function setState(button, label, success) {
-        button.textContent = label;
-        button.classList.toggle('is-copied', success);
-        button.classList.toggle('is-error', !success);
-
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-          button.textContent = originalLabel;
-          button.classList.remove('is-copied', 'is-error');
-        }, 2000);
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCopyButtons);
-  } else {
-    initCopyButtons();
-  }
-})();
-    </script>
 
 
     <style>
@@ -7768,6 +7644,130 @@
         </div>
     </footer>
 
+        <script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Copy full <pre> text for each .copy-container / .copy-btn pair
+     ------------------------------------------------------------------ */
+
+  // Fallback for browsers / non-HTTPS contexts without navigator.clipboard
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-9999px';
+    ta.style.left = '-9999px';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+
+    var selection = document.getSelection();
+    var previousRange = selection && selection.rangeCount > 0
+      ? selection.getRangeAt(0)
+      : null;
+
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+
+    var ok = false;
+    try {
+      ok = document.execCommand('copy');
+    } catch (e) {
+      ok = false;
+    }
+
+    document.body.removeChild(ta);
+    if (previousRange && selection) {
+      selection.removeAllRanges();
+      selection.addRange(previousRange);
+    }
+
+    if (!ok) {
+      throw new Error('execCommand("copy") failed');
+    }
+  }
+
+  function copyText(text) {
+    // Modern async API (requires HTTPS or localhost)
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function () {
+        fallbackCopy(text); // try the old way if the API rejects
+      });
+    }
+    // Older browsers / http://
+    return new Promise(function (resolve) {
+      fallbackCopy(text);
+      resolve();
+    });
+  }
+
+  // Grab the real code from the <pre>:
+  //  - textContent  -> decoded markup (<section ...>), whitespace/indent kept
+  //  - innerHTML    -> escaped markup (&lt;section ...&gt;)
+  // We use textContent so the pasted result is usable code.
+  function getPreText(pre) {
+    var text = pre.textContent || '';
+    return text
+      .replace(/^\s*\n/, '')   // drop the leading newline after <pre>
+      .replace(/\s+$/, '')     // drop trailing whitespace/newline
+      .replace(/\t/g, '  ');   // optional: normalise tabs to 2 spaces
+  }
+
+  function initCopyButtons() {
+    var buttons = document.querySelectorAll('.copy-btn');
+
+    Array.prototype.forEach.call(buttons, function (btn) {
+      var container = btn.closest('.copy-container') || btn.parentNode;
+      var pre = container ? container.querySelector('pre') : null;
+      if (!pre) return;
+
+      var originalLabel = btn.textContent.trim() || 'Copy';
+      var timer = null;
+
+      btn.addEventListener('click', function () {
+        var text = getPreText(pre);
+
+        copyText(text)
+          .then(function () {
+            setState(btn, 'Copied!', true);
+          })
+          .catch(function (err) {
+            console.error('Copy failed:', err);
+            setState(btn, 'Press Ctrl+C', false);
+            // Last resort: select the code so the user can copy manually
+            try {
+              var range = document.createRange();
+              range.selectNodeContents(pre);
+              var sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            } catch (e) { /* ignore */ }
+          });
+      });
+
+      function setState(button, label, success) {
+        button.textContent = label;
+        button.classList.toggle('is-copied', success);
+        button.classList.toggle('is-error', !success);
+
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          button.textContent = originalLabel;
+          button.classList.remove('is-copied', 'is-error');
+        }, 2000);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCopyButtons);
+  } else {
+    initCopyButtons();
+  }
+})();
+    </script>
 
 
 </body>
