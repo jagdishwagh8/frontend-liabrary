@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Essential -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Primary SEO -->
+    <title>JVW Frontend Library | Reusable HTML & CSS Components</title>
+
+    <meta name="description" content="Explore JVW Frontend Library, a collection of reusable, responsive website components built with HTML, CSS and JavaScript. Discover modern navigation bars, hero sections, services, cards and more.">
+
+    <meta name="author" content="Jagdish Wagh">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta name="language" content="English">
+    <meta name="application-name" content="JVW Frontend Library">
+
+    <!-- Canonical URL: REPLACE WITH YOUR REAL DOMAIN -->
+    <link rel="canonical" href="https://YOUR-DOMAIN.com/">
+
+    <!-- Browser Appearance -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="color-scheme" content="dark light">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Open Graph: WhatsApp, Facebook, LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="JVW Frontend Library">
+    <meta property="og:title" content="JVW Frontend Library | Reusable Website Components">
+    <meta property="og:description" content="Discover reusable and responsive website components built with HTML, CSS and JavaScript. Explore modern design styles and ready-to-customize sections.">
+    <meta property="og:url" content="https://YOUR-DOMAIN.com/">
+    <meta property="og:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+    <meta property="og:image:alt" content="JVW Frontend Library - Reusable responsive website components">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JVW Frontend Library | Reusable Website Components">
+    <meta name="twitter:description" content="Explore modern, responsive HTML, CSS and JavaScript components for building professional websites.">
+    <meta name="twitter:image" content="https://YOUR-DOMAIN.com/og-image.jpg">
+
+    <!-- Performance -->
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Structured Data: Website -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "JVW Frontend Library",
+      "alternateName": "JWAGH Frontend Library",
+      "url": "https://YOUR-DOMAIN.com/",
+      "description": "A collection of reusable, responsive website components built using HTML, CSS and JavaScript.",
+      "inLanguage": "en"
+    }
+    </script>
+
+</head>
+<body>
+
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --glass: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.24);
+    --radius: 26px;
+  }
+
+  html, body { min-height: 100%; }
+
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: #050505;
+    background-image:
+      radial-gradient(1200px 800px at 10% 10%, #2a2a2a 0%, transparent 55%),
+      radial-gradient(1000px 700px at 90% 20%, #1c1c1c 0%, transparent 55%),
+      radial-gradient(900px 900px at 50% 100%, #303030 0%, transparent 60%),
+      linear-gradient(160deg, #000000 0%, #111111 100%);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    padding: 40px 20px;
+    overflow-x: hidden;
+  }
+
+  /* ---------- floating monochrome orbs (decor) ---------- */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 14s ease-in-out infinite;
+  }
+  .orb.a { width: 320px; height: 320px; background: #8a8a8a; top: -80px; left: -60px; }
+  .orb.b { width: 280px; height: 280px; background: #d0d0d0; bottom: -80px; right: -60px; animation-delay: -5s; opacity: 0.25; }
+  .orb.c { width: 240px; height: 240px; background: #5a5a5a; top: 45%; left: 55%; animation-delay: -9s; opacity: 0.3; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50%      { transform: translate(30px, -40px) scale(1.12); }
+  }
+
+  /* ---------- grid ---------- */
+  .grid {
+    position: relative;
+    z-index: 1;
+    width: min(1080px, 100%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+
+  /* ---------- card ---------- */
+  .card {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    box-shadow:
+      0 20px 45px rgba(0, 0, 0, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: transform 0.45s cubic-bezier(.22,1,.36,1), box-shadow 0.45s, border-color 0.45s;
+    isolation: isolate;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.55);
+    box-shadow:
+      0 34px 70px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  /* anchor fills the whole card */
+  .card > a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card > a:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: -6px;
+    border-radius: var(--radius);
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%) contrast(1.05);
+    transition: transform 0.7s cubic-bezier(.22,1,.36,1), filter 0.5s;
+  }
+
+  .card:hover img {
+    transform: scale(1.08);
+    filter: grayscale(55%) contrast(1.12) brightness(1.08);
+  }
+
+  /* dark vignette so the name always reads well */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 90% at 50% 50%, rgba(0,0,0,0.10) 0%, rgba(0,0,0,0.70) 100%),
+      linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 35%, rgba(0,0,0,0.55) 100%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* ---------- centered glass name ---------- */
+  .name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    padding: 16px 34px;
+    border-radius: 999px;
+    white-space: nowrap;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+
+    font-size: clamp(0.95rem, 2.4vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+    transition: background 0.4s, transform 0.4s, letter-spacing 0.4s, box-shadow 0.4s;
+  }
+
+  .card:hover .name {
+    background: rgba(255, 255, 255, 0.22);
+    letter-spacing: 0.2em;
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow:
+      0 10px 38px rgba(0, 0, 0, 0.65),
+      0 0 22px rgba(255, 255, 255, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 680px) {
+    .grid { grid-template-columns: 1fr; gap: 20px; }
+    .name { padding: 13px 26px; letter-spacing: 0.1em; }
+  }
+</style>
+
+
+
+
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="orb c"></div>
+
+  <main class="grid">
+
+    <figure class="card">
+      <a href="minimal.html">
+        <img src="minimal.webp" alt="Minimal style preview" />
+        <figcaption class="name">Minimal</figcaption>
+      </a> 
+    </figure>
+
+    <figure class="card">
+      <a href="luxury.html">
+        <img src="luxury.webp" alt="Luxury style preview" />
+        <figcaption class="name">Luxury</figcaption>
+      </a>
+    </figure>
+
+    <figure class="card">
+      <a href="professional.html">
+        <img src="professional.webp" alt="Professional style preview" />
+        <figcaption class="name">Professional</figcaption>
+      </a>
+    </figure>
+
+    <figure class="card">
+      <a href="versatile.html">
+        <img src="versatile.jpg" alt="Sass style preview" />
+        <figcaption class="name">versatile</figcaption>
+      </a>
+    </figure>
+
+  </main>
+
+</body>
+</html>

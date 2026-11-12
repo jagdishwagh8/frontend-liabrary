@@ -1,0 +1,7648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary SEO -->
+    <title>WEBLYTIC | Versatile Frontend Component Library</title>
+
+    <meta name="description" content="Explore WEBLYTIC, a versatile frontend library featuring reusable, responsive HTML, CSS and JavaScript components for building modern, professional websites.">
+
+    <meta name="author" content="WEBLYTIC">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://jwagh8237.github.io/weblytic/">
+
+    <!-- Browser Theme -->
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="WEBLYTIC">
+    <meta property="og:title" content="WEBLYTIC | Versatile Frontend Component Library">
+    <meta property="og:description" content="Discover reusable frontend components, modern layouts and responsive UI sections built with HTML, CSS and JavaScript.">
+    <meta property="og:url" content="https://jwagh8237.github.io/weblytic/">
+    <meta property="og:image" content="https://jwagh8237.github.io/weblytic/og-image.jpg">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="WEBLYTIC | Frontend Component Library">
+    <meta name="twitter:description" content="Build better websites with reusable, responsive frontend components.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+</head>
+
+<body>
+    <style>
+        /* ==================================================
+        01. DESIGN SYSTEM
+        ================================================== */
+        .component-section {
+            --text-primary: #f8f8f8;
+            --text-secondary: #c0c0c0;
+            --glass-border: rgba(255, 255, 255, 0.14);
+            --glass-border-light: rgba(255, 255, 255, 0.23);
+            --glass-blur: 24px;
+
+            position: relative;
+            isolation: isolate;
+            width: 100%;
+            min-width: 0;
+            margin: 32px 0;
+            padding: clamp(18px, 4vw, 38px);
+            color: var(--text-primary);
+            font-family: inherit;
+            background: linear-gradient(135deg, rgba(255,255,255,0.075), rgba(255,255,255,0.015) 55%, rgba(255,255,255,0.045));
+            border: 1px solid var(--glass-border);
+            border-radius: 26px;
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            box-shadow: 0 20px 55px rgba(0,0,0,0.28), inset 0 1px 1px rgba(255,255,255,0.13), inset 0 -1px 1px rgba(0,0,0,0.2);
+        }
+
+        .component-section,
+        .component-section * { box-sizing: border-box; }
+
+        /* ==================================================
+        02. COMPONENT TITLE
+        ================================================== */
+        .component-section .title {
+            position: relative;
+            margin: 0 0 28px;
+            padding: 0 0 17px;
+            color: var(--text-primary);
+            font-size: clamp(21px, 3vw, 29px);
+            font-weight: 650;
+            line-height: 1.3;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .component-section .title::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 65px;
+            height: 2px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+        }
+
+        /* ==================================================
+        03. IMAGE PREVIEW & GALLERY
+        ================================================== */
+        .component-section .preview-panel {
+            width: 100%;
+            margin-bottom: 28px;
+            padding: clamp(10px, 2.5vw, 22px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.025));
+            border: 1px solid var(--glass-border);
+            border-radius: 21px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.12), 0 10px 30px rgba(0,0,0,0.16);
+        }
+
+        .component-section .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(14px, 2vw, 24px);
+            width: 100%;
+        }
+
+        .component-section .gallery-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(0,0,0,0.25));
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 16px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.10), 0 8px 25px rgba(0,0,0,0.18);
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .component-section .gallery-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 8px;
+            object-fit: contain;
+            object-position: center;
+            border-radius: inherit;
+            transition: transform 0.4s ease;
+        }
+
+        /* ==================================================
+        04. CODE LAYOUT (ROW/FLEX)
+        ================================================== */
+        .component-section .code-grid {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(16px, 2vw, 24px);
+            margin-top: 22px;
+            align-items: stretch;
+        }
+
+        .component-section .code-grid > .code {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+
+        .component-section .code {
+            position: relative;
+            width: 100%;
+            padding: clamp(15px, 3vw, 24px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.085), rgba(255,255,255,0.025) 65%, rgba(255,255,255,0.055));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.12), inset 0 -1px 1px rgba(0,0,0,0.16), 0 12px 30px rgba(0,0,0,0.17);
+            transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .component-section .code-heading {
+            margin-bottom: 16px;
+            flex-shrink: 0;
+        }
+
+        .component-section .code h3 {
+            display: inline-block;
+            margin: 0 0 7px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+            line-height: 1.5;
+        }
+
+        .component-section .code p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* ==================================================
+        05. CODE AREA & SCROLLBAR
+        ================================================== */
+        .component-section .copy-container {
+            position: relative;
+            width: 100%;
+            height: 320px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,0,0,0.30), rgba(255,255,255,0.045));
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 14px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 5px 15px rgba(0,0,0,0.13);
+        }
+
+        .component-section .copy-container pre {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 20px 20px 65px;
+            margin: 0;
+            overflow: auto;
+            color: #eeeeee;
+            font-family: "Fira Code", "Consolas", monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            white-space: pre;
+            tab-size: 4;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255,255,255,0.30) transparent;
+        }
+
+        .component-section .copy-container pre::-webkit-scrollbar { width: 8px; height: 8px; }
+        .component-section .copy-container pre::-webkit-scrollbar-track { background: transparent; }
+        .component-section .copy-container pre::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.20); border-radius: 20px; }
+        .component-section .copy-container pre::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.40); }
+
+        /* ==================================================
+        06. COPY BUTTON
+        ================================================== */
+        .component-section .copy-btn {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            z-index: 3;
+            padding: 9px 18px;
+            color: #fff;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.28);
+            border-radius: 9px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            cursor: pointer;
+            transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+        }
+
+        .component-section .copy-btn:hover { color: #111; background: rgba(255,255,255,0.95); border-color: #fff; }
+        .component-section .copy-btn:active { transform: scale(0.96); }
+
+        /* ==================================================
+        07. HOVER & FOCUS STATES
+        ================================================== */
+        .component-section button:focus-visible,
+        .component-section a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+        @media (hover: hover) {
+            .component-section .gallery-item:hover {
+                transform: translateY(-4px);
+                border-color: var(--glass-border-light);
+                box-shadow: inset 0 1px 2px rgba(255,255,255,0.15), 0 15px 35px rgba(0,0,0,0.25);
+            }
+            .component-section .gallery-item:hover img { transform: scale(1.02); }
+            
+            .component-section .code:hover {
+                background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.045));
+                border-color: var(--glass-border-light);
+                transform: translateY(-3px);
+            }
+        }
+
+        /* ==================================================
+        08. RESPONSIVENESS
+        ================================================== */
+        @media (min-width: 769px) {
+            .component-section .code-grid { flex-direction: row; }
+        }
+
+        @media (max-width: 768px) {
+            .component-section { margin: 22px 0; border-radius: 21px; }
+            .component-section .preview-panel { border-radius: 17px; }
+            .component-section .image-gallery { grid-template-columns: 1fr; gap: 16px; }
+            .component-section .gallery-item { aspect-ratio: 16 / 10; }
+            .component-section .code-grid { gap: 16px; }
+            .component-section .code { border-radius: 17px; }
+            .component-section .copy-container { height: 280px; }
+            .component-section .copy-container pre { font-size: 12px; padding: 16px 16px 62px; }
+        }
+
+        @media (max-width: 480px) {
+            .component-section { padding: 15px; margin: 18px 0; border-radius: 17px; }
+            .component-section .title { margin-bottom: 19px; padding-bottom: 12px; letter-spacing: 0.8px; }
+            .component-section .preview-panel { padding: 9px; margin-bottom: 19px; border-radius: 15px; }
+            .component-section .image-gallery { gap: 12px; }
+            .component-section .gallery-item { aspect-ratio: 4 / 3; border-radius: 12px; }
+            .component-section .gallery-item img { padding: 5px; }
+            .component-section .code-grid { gap: 14px; margin-top: 15px; }
+            .component-section .code { padding: 13px; border-radius: 15px; }
+            .component-section .code h3 { font-size: 13px; }
+            .component-section .code p { font-size: 12px; }
+            .component-section .copy-container { height: 250px; }
+            .component-section .copy-container pre { padding: 13px 13px 58px; font-size: 11px; line-height: 1.7; }
+            .component-section .copy-btn { right: 9px; bottom: 9px; padding: 8px 14px; font-size: 11px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .component-section *, .component-section *::before, .component-section *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: #f8f8f8;
+            background: radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.10), transparent 38%), radial-gradient(ellipse at 85% 75%, rgba(255,255,255,0.065), transparent 40%), #080808;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        /* ==================================================
+           01. GLOBAL VARIABLES & BASE
+        ================================================== */
+        :root {
+            --text-primary: #f8f8f8;
+            --text-secondary: #c0c0c0;
+            --text-muted: #929292;
+            --glass-border: rgba(255, 255, 255, 0.14);
+            --glass-border-light: rgba(255, 255, 255, 0.23);
+            --glass-blur: 24px;
+            --bg-color: #080808;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, sans-serif;
+            background: 
+                radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.10), transparent 38%), 
+                radial-gradient(ellipse at 85% 75%, rgba(255,255,255,0.065), transparent 40%), 
+                var(--bg-color);
+            background-attachment: fixed;
+        }
+
+        /* ==================================================
+           02. NAVBAR (Structured & Responsive)
+        ================================================== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 72px;
+            padding: 0 28px;
+            background: rgba(20, 20, 20, 0.78);
+            border-bottom: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .nav-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 72px;
+        }
+
+        .navcomp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-width: 76px;
+            padding: 0 12px;
+            color: #d0d0d0;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.25s ease, background 0.25s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .nav-item:hover .navcomp {
+            color: #fff;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1001;
+            min-width: 175px;
+            padding: 8px;
+            background: rgba(30, 30, 30, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 11px 13px;
+            color: #c9c9c9;
+            font-size: 13px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+        }
+
+        .dropdown a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.10);
+            padding-left: 18px;
+        }
+
+        .menu-btn {
+            display: none;
+            color: #fff;
+            font-size: 27px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+
+        /* ==================================================
+           04. COMPACT FOOTER
+        ================================================== */
+        .site-footer {
+            width: 100%;
+            background: rgba(8, 8, 8, 0.8);
+            border-top: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .footer-brand img {
+            height: 28px;
+            width: auto;
+            border-radius: 6px;
+            object-fit: contain;
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ==================================================
+           05. RESPONSIVENESS
+        ================================================== */
+        @media (min-width: 769px) {
+            .component-section .code-grid { flex-direction: row; }
+        }
+
+        @media (max-width: 900px) {
+            .navbar { height: 64px; padding: 0 18px; }
+            .menu-btn { display: block; }
+            
+            .nav-links {
+                position: absolute;
+                top: 64px;
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                max-height: 0;
+                overflow-y: auto;
+                background: rgba(20, 20, 20, 0.96);
+                border-bottom: 1px solid var(--glass-border);
+                backdrop-filter: blur(25px);
+                -webkit-backdrop-filter: blur(25px);
+                transition: max-height 0.4s ease;
+            }
+
+            .nav-links.active { max-height: 80vh; }
+
+            .nav-item {
+                flex-direction: column;
+                align-items: stretch;
+                width: 100%;
+                height: auto;
+            }
+
+            .navcomp {
+                justify-content: flex-start;
+                width: 100%;
+                min-height: 48px;
+                padding: 0 22px;
+            }
+
+            .dropdown {
+                position: static;
+                display: block;
+                width: 100%;
+                min-width: 0;
+                padding: 3px 12px 8px 28px;
+                background: rgba(255, 255, 255, 0.035);
+                border: 0;
+                border-radius: 0;
+                box-shadow: none;
+                backdrop-filter: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .component-section { border-radius: 21px; }
+            .component-section .preview-panel { border-radius: 17px; }
+            .component-section .image-gallery { grid-template-columns: 1fr; gap: 16px; }
+            .component-section .gallery-item { aspect-ratio: 16 / 10; }
+            .component-section .code-grid { gap: 16px; }
+            .component-section .code { border-radius: 17px; }
+            .component-section .copy-container { height: 280px; }
+            .component-section .copy-container pre { font-size: 12px; padding: 16px 16px 62px; }
+            
+            .footer-container { flex-direction: column; text-align: center; gap: 12px; padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .component-section { padding: 15px; border-radius: 17px; }
+            .component-section .title { margin-bottom: 19px; padding-bottom: 12px; letter-spacing: 0.8px; }
+            .component-section .preview-panel { padding: 9px; margin-bottom: 19px; border-radius: 15px; }
+            .component-section .gallery-item { aspect-ratio: 4 / 3; border-radius: 12px; }
+            .component-section .gallery-item img { padding: 5px; }
+            .component-section .code-grid { gap: 14px; margin-top: 15px; }
+            .component-section .code { padding: 13px; border-radius: 15px; }
+            .component-section .copy-container { height: 250px; }
+            .component-section .copy-container pre { padding: 13px 13px 58px; font-size: 11px; }
+            .component-section .copy-btn { right: 9px; bottom: 9px; padding: 8px 14px; font-size: 11px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+        }
+    </style>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        document.getElementById('menuBtn').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+    </script>
+    
+
+
+
+
+
+
+
+
+    
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="#hero" class="logo">
+            <!-- Replace with your actual logo path -->
+            <img src="logo.png" alt="Weblytic Logo" onerror="this.style.display='none'">
+            <span>versatile</span>
+        </a>
+
+        <div class="menu-btn" id="menuBtn">☰</div>
+
+        <div class="nav-links" id="navLinks">
+            <div class="nav-item">
+                <a href="#statementabout" class="navcomp">about</a>
+                <div class="dropdown">
+                    <a href="#statementabout">statement</a>
+                    <a href="#centeredabout">centered</a>
+                    <a href="#splitabout">split</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#iconbased" class="navcomp">services</a>
+                <div class="dropdown">
+                    <a href="#iconbased">icon based</a>
+                    <a href="#servicecards">service cards</a>
+                    <a href="#serviceslist">services list</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#featuredimage" class="navcomp">gallery</a>
+                <div class="dropdown">
+                    <a href="#featuredimage">featured image</a>
+                    <a href="#mansonrygallery">mansonry</a>
+                    <a href="#3imggallery">3img</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#awardscredencial" class="navcomp">credential</a>
+                <div class="dropdown">
+                    <a href="#awardscredencial">awards</a>
+                    <a href="#credentialist">list</a>
+                    <a href="#experiencestats">stats</a>
+                </div>
+            </div>
+
+            <div class="nav-item">
+                <a href="#fullbanner" class="navcomp">CTA</a>
+                <div class="dropdown">
+                    <a href="#fullbanner">full banner</a>
+                    <a href="#splitcta">split</a>
+                    <a href="#smallcta">small banner</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+    <section class="container component-section " id="statementabout">
+        <h2 class="title">statement about</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="statement brief about1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="statement brief about2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="statement brief about3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+                    <pre>
+&lt;section class="mr-brand-statement" aria-labelledby="mrbs-title"&gt;
+    &lt;div class="mr-brand-statement__container"&gt;
+
+        &lt;span class="mr-brand-statement__eyebrow"&gt;
+            Our Philosophy
+        &lt;/span&gt;
+
+        &lt;h2 class="mr-brand-statement__title" id="mrbs-title"&gt;
+            Thoughtfully designed.&lt;br&gt;
+            &lt;em&gt;Professionally delivered.&lt;/em&gt;
+        &lt;/h2&gt;
+
+        &lt;div class="mr-brand-statement__divider"&gt;&lt;/div&gt;
+
+        &lt;p class="mr-brand-statement__description"&gt;
+            We believe great work begins with clarity. By combining
+            thoughtful design, structured execution, and attention
+            to detail, we create meaningful experiences that balance
+            lasting quality with everyday functionality.
+        &lt;/p&gt;
+
+        &lt;ul class="mr-brand-statement__principles"&gt;
+            &lt;li&gt;Clarity&lt;/li&gt;
+            &lt;li&gt;Craftsmanship&lt;/li&gt;
+            &lt;li&gt;Consistency&lt;/li&gt;
+            &lt;li&gt;Quality&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;p class="mr-brand-statement__signature"&gt;
+            A considered approach to every detail.
+        &lt;/p&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ===== MODERN REFINED BRAND STATEMENT ===== */
+
+.mr-brand-statement,
+.mr-brand-statement * {
+    box-sizing: border-box;
+}
+
+.mr-brand-statement {
+    --mrbs-ink: #26374a;
+    --mrbs-muted: #687584;
+    --mrbs-accent: #aa8c60;
+    --mrbs-line: #e7e3db;
+    --mrbs-bg: #faf9f6;
+
+    width: 100%;
+    padding: 86px 24px;
+    background: var(--mrbs-bg);
+    color: var(--mrbs-ink);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-brand-statement__container {
+    width: min(900px, 100%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Eyebrow */
+
+.mr-brand-statement__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-bottom: 25px;
+    color: var(--mrbs-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.mr-brand-statement__eyebrow::before,
+.mr-brand-statement__eyebrow::after {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--mrbs-accent);
+}
+
+/* Main statement */
+
+.mr-brand-statement__title {
+    max-width: 850px;
+    margin: 0 auto;
+    color: var(--mrbs-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 5.3vw, 62px);
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: -1.4px;
+}
+
+.mr-brand-statement__title em {
+    color: var(--mrbs-accent);
+    font-weight: 400;
+}
+
+/* Divider */
+
+.mr-brand-statement__divider {
+    width: 48px;
+    height: 1px;
+    margin: 29px auto;
+    background: var(--mrbs-accent);
+}
+
+/* Supporting statement */
+
+.mr-brand-statement__description {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--mrbs-muted);
+    font-size: 14px;
+    line-height: 2;
+}
+
+/* Brand principles */
+
+.mr-brand-statement__principles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 25px;
+    margin: 32px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mr-brand-statement__principles li {
+    color: var(--mrbs-ink);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.mr-brand-statement__principles li + li {
+    position: relative;
+    padding-left: 25px;
+}
+
+.mr-brand-statement__principles li + li::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--mrbs-accent);
+    transform: translateY(-50%);
+}
+
+/* Bottom accent */
+
+.mr-brand-statement__signature {
+    margin-top: 35px;
+    color: var(--mrbs-muted);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+    .mr-brand-statement {
+        padding: 70px 24px;
+    }
+
+    .mr-brand-statement__container {
+        max-width: 760px;
+    }
+
+    .mr-brand-statement__title {
+        font-size: clamp(36px, 5.5vw, 52px);
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+    .mr-brand-statement {
+        padding: 56px 22px;
+    }
+
+    .mr-brand-statement__eyebrow {
+        gap: 9px;
+        margin-bottom: 20px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .mr-brand-statement__eyebrow::before,
+    .mr-brand-statement__eyebrow::after {
+        width: 17px;
+    }
+
+    .mr-brand-statement__title {
+        font-size: clamp(34px, 9vw, 45px);
+        line-height: 1.18;
+        letter-spacing: -0.7px;
+    }
+
+    .mr-brand-statement__divider {
+        margin: 24px auto;
+    }
+
+    .mr-brand-statement__description {
+        font-size: 13px;
+        line-height: 1.9;
+    }
+
+    .mr-brand-statement__principles {
+        gap: 12px 18px;
+        margin-top: 25px;
+    }
+
+    .mr-brand-statement__principles li {
+        font-size: 10px;
+    }
+
+    .mr-brand-statement__principles li + li {
+        padding-left: 18px;
+    }
+
+    .mr-brand-statement__signature {
+        margin-top: 27px;
+        font-size: 13px;
+    }
+}
+
+/* ===== SMALL PHONES ===== */
+
+@media (max-width: 360px) {
+    .mr-brand-statement {
+        padding: 46px 18px;
+    }
+
+    .mr-brand-statement__title {
+        font-size: 31px;
+    }
+
+    .mr-brand-statement__principles {
+        gap: 12px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .mr-brand-statement * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+&lt;/style&gt;
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="centeredabout">
+        <h2 class="title">centered about</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="centered brief about1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="centered brief about2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="centered brief about3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+                    <pre>
+&lt;section class="mr-about" id="about"&gt;
+    &lt;div class="mr-about__container"&gt;
+
+        &lt;span class="mr-about__eyebrow"&gt;
+            A little about us
+        &lt;/span&gt;
+
+        &lt;h2 class="mr-about__title"&gt;
+            Thoughtful work.&lt;br&gt;
+            &lt;span&gt;Meaningful results.&lt;/span&gt;
+        &lt;/h2&gt;
+
+        &lt;p class="mr-about__intro"&gt;
+            We bring clarity, professionalism, and considered design
+            together to create solutions that work beautifully for
+            your business.
+        &lt;/p&gt;
+
+        &lt;div class="mr-about__divider"&gt;&lt;/div&gt;
+
+        &lt;p class="mr-about__description"&gt;
+            Our approach combines clean layouts, consistent structure,
+            readable typography, and carefully selected imagery.
+            Every detail is considered to make your experience clear,
+            engaging, and effortless.
+        &lt;/p&gt;
+
+        &lt;ul class="mr-about__features"&gt;
+            &lt;li&gt;Clear communication&lt;/li&gt;
+            &lt;li&gt;Thoughtful solutions&lt;/li&gt;
+            &lt;li&gt;Attention to detail&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;div class="mr-about__actions"&gt;
+            &lt;a href="#contact" class="mr-about__button"&gt;
+                Discover More &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ===== MODERN REFINED ABOUT SECTION ===== */
+
+.mr-about,
+.mr-about * {
+    box-sizing: border-box;
+}
+
+.mr-about {
+    --mr-ink: #243447;
+    --mr-muted: #687584;
+    --mr-accent: #aa8b5e;
+    --mr-border: #e7e6e1;
+    --mr-bg: #faf9f6;
+
+    width: 100%;
+    padding: 82px 24px;
+    background: var(--mr-bg);
+    color: var(--mr-ink);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-about__container {
+    width: min(780px, 100%);
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Eyebrow */
+
+.mr-about__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: var(--mr-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+}
+
+.mr-about__eyebrow::before,
+.mr-about__eyebrow::after {
+    content: "";
+    width: 25px;
+    height: 1px;
+    background: var(--mr-accent);
+}
+
+/* Heading */
+
+.mr-about__title {
+    margin: 0 0 18px;
+    color: var(--mr-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 4.5vw, 49px);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+}
+
+.mr-about__title span {
+    color: var(--mr-accent);
+    font-style: italic;
+}
+
+/* Intro */
+
+.mr-about__intro {
+    max-width: 620px;
+    margin: 0 auto;
+    color: var(--mr-muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+/* Refined divider */
+
+.mr-about__divider {
+    width: 52px;
+    height: 1px;
+    margin: 29px auto;
+    background: var(--mr-accent);
+}
+
+/* Supporting text */
+
+.mr-about__description {
+    max-width: 640px;
+    margin: 0 auto;
+    color: #566373;
+    font-size: 13px;
+    line-height: 2;
+}
+
+/* Feature list */
+
+.mr-about__features {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 26px;
+    padding: 0;
+    margin: 29px 0 0;
+    list-style: none;
+}
+
+.mr-about__features li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--mr-ink);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.mr-about__features li::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--mr-accent);
+}
+
+/* Call to action */
+
+.mr-about__actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.mr-about__button {
+    min-height: 47px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 0 23px;
+    border: 1px solid var(--mr-ink);
+    background: var(--mr-ink);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.mr-about__button:hover,
+.mr-about__button:focus-visible {
+    background: #354b60;
+    border-color: #354b60;
+}
+
+.mr-about__button span {
+    transition: transform 0.25s ease;
+}
+
+.mr-about__button:hover span {
+    transform: translateX(4px);
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+    .mr-about {
+        padding: 68px 24px;
+    }
+
+    .mr-about__container {
+        max-width: 700px;
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 600px) {
+    .mr-about {
+        padding: 54px 22px;
+    }
+
+    .mr-about__eyebrow {
+        gap: 9px;
+        margin-bottom: 17px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .mr-about__eyebrow::before,
+    .mr-about__eyebrow::after {
+        width: 17px;
+    }
+
+    .mr-about__title {
+        margin-bottom: 16px;
+        font-size: clamp(32px, 8.5vw, 42px);
+        letter-spacing: -0.5px;
+    }
+
+    .mr-about__intro {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .mr-about__divider {
+        margin: 24px auto;
+    }
+
+    .mr-about__description {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .mr-about__features {
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 25px;
+    }
+
+    .mr-about__features li {
+        font-size: 12px;
+    }
+
+    .mr-about__actions {
+        margin-top: 27px;
+    }
+
+    .mr-about__button {
+        min-height: 46px;
+        padding: 0 20px;
+    }
+}
+
+/* ===== SMALL PHONES ===== */
+
+@media (max-width: 360px) {
+    .mr-about {
+        padding: 46px 18px;
+    }
+
+    .mr-about__title {
+        font-size: 30px;
+    }
+
+    .mr-about__eyebrow {
+        letter-spacing: 1.5px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .mr-about *,
+    .mr-about *::before,
+    .mr-about *::after {
+        transition: none !important;
+    }
+}
+&lt;/style&gt;
+                    </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>   
+
+    <section class="container component-section " id="splitabout">
+        <h2 class="title">split about</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="split brief about1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="split brief about2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="split brief about3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+                    <pre>
+&lt;section class="mr-split-about" id="about"&gt;
+    &lt;div class="mr-split-about__container"&gt;
+
+        &lt;!-- IMAGE --&gt;
+        &lt;div class="mr-split-about__visual"&gt;
+            &lt;div class="mr-split-about__image-frame"&gt;&lt;/div&gt;
+
+            &lt;img
+                class="mr-split-about__image"
+                src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+                alt="Refined contemporary interior with natural materials and balanced details"
+                loading="lazy"
+            &gt;
+
+            &lt;span class="mr-split-about__image-caption"&gt;
+                Thoughtful by design
+            &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;!-- TEXT --&gt;
+        &lt;div class="mr-split-about__content"&gt;
+
+            &lt;span class="mr-split-about__eyebrow"&gt;
+                Brief About Us
+            &lt;/span&gt;
+
+            &lt;h2 class="mr-split-about__title"&gt;
+                A clear vision.&lt;br&gt;
+                &lt;em&gt;A considered approach.&lt;/em&gt;
+            &lt;/h2&gt;
+
+            &lt;p class="mr-split-about__intro"&gt;
+                We combine professional expertise with thoughtful design
+                to create practical, refined solutions for your business.
+            &lt;/p&gt;
+
+            &lt;p class="mr-split-about__description"&gt;
+                From clear communication to carefully considered details,
+                our approach brings together simplicity, structure, and
+                quality. Every element is designed to make your experience
+                straightforward, engaging, and dependable.
+            &lt;/p&gt;
+
+            &lt;ul class="mr-split-about__features"&gt;
+                &lt;li&gt;Clear communication&lt;/li&gt;
+                &lt;li&gt;Consistent quality&lt;/li&gt;
+                &lt;li&gt;Thoughtful solutions&lt;/li&gt;
+                &lt;li&gt;Attention to detail&lt;/li&gt;
+            &lt;/ul&gt;
+
+            &lt;div class="mr-split-about__actions"&gt;
+                &lt;a href="#contact" class="mr-split-about__button"&gt;
+                    Learn About Us &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+                &lt;/a&gt;
+
+                &lt;a href="#services" class="mr-split-about__secondary"&gt;
+                    Explore Services
+                &lt;/a&gt;
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ===== MODERN REFINED ABOUT SECTION ===== */
+
+.mr-split-about,
+.mr-split-about * {
+    box-sizing: border-box;
+}
+
+.mr-split-about {
+    --mra-ink: #26374a;
+    --mra-muted: #6c7784;
+    --mra-accent: #ad9064;
+    --mra-line: #e5e2da;
+    --mra-bg: #faf9f6;
+
+    width: 100%;
+    padding: 84px 24px;
+    background: var(--mra-bg);
+    color: var(--mra-ink);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-split-about__container {
+    width: min(1160px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    align-items: center;
+    gap: clamp(45px, 7vw, 90px);
+}
+
+/* ===== IMAGE SIDE ===== */
+
+.mr-split-about__visual {
+    position: relative;
+    min-width: 0;
+}
+
+.mr-split-about__image {
+    display: block;
+    width: 100%;
+    height: 440px;
+    object-fit: cover;
+    object-position: center;
+    background: #e7e3db;
+}
+
+.mr-split-about__image-frame {
+    position: absolute;
+    top: 16px;
+    right: -16px;
+    bottom: -16px;
+    left: 16px;
+    z-index: 0;
+    border: 1px solid #d8c8ac;
+    pointer-events: none;
+}
+
+.mr-split-about__image {
+    position: relative;
+    z-index: 1;
+}
+
+.mr-split-about__image-caption {
+    position: absolute;
+    z-index: 2;
+    left: 18px;
+    bottom: 18px;
+    padding: 10px 14px;
+    background: rgba(250, 249, 246, 0.94);
+    color: var(--mra-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+}
+
+/* ===== TEXT SIDE ===== */
+
+.mr-split-about__content {
+    padding: 10px 0;
+}
+
+.mr-split-about__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: var(--mra-accent);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+}
+
+.mr-split-about__eyebrow::before {
+    content: "";
+    width: 30px;
+    height: 1px;
+    background: var(--mra-accent);
+}
+
+.mr-split-about__title {
+    margin: 0 0 22px;
+    color: var(--mra-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(35px, 4vw, 49px);
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+}
+
+.mr-split-about__title em {
+    color: var(--mra-accent);
+    font-weight: 400;
+}
+
+.mr-split-about__intro {
+    margin: 0 0 18px;
+    color: #465568;
+    font-size: 15px;
+    line-height: 1.85;
+}
+
+.mr-split-about__description {
+    margin: 0;
+    color: var(--mra-muted);
+    font-size: 13px;
+    line-height: 1.95;
+}
+
+/* ===== FEATURE POINTS ===== */
+
+.mr-split-about__features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px 20px;
+    padding: 21px 0 0;
+    margin: 24px 0 0;
+    border-top: 1px solid var(--mra-line);
+    list-style: none;
+}
+
+.mr-split-about__features li {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--mra-ink);
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.mr-split-about__features li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    flex: 0 0 6px;
+    border-radius: 50%;
+    background: var(--mra-accent);
+}
+
+/* ===== CALL TO ACTION ===== */
+
+.mr-split-about__actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.mr-split-about__button {
+    min-height: 47px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 0 21px;
+    border: 1px solid var(--mra-ink);
+    background: var(--mra-ink);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.mr-split-about__button:hover,
+.mr-split-about__button:focus-visible {
+    background: #3b5065;
+    border-color: #3b5065;
+}
+
+.mr-split-about__button span {
+    transition: transform 0.25s ease;
+}
+
+.mr-split-about__button:hover span {
+    transform: translateX(4px);
+}
+
+.mr-split-about__secondary {
+    color: var(--mra-ink);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid var(--mra-accent);
+    padding-bottom: 5px;
+}
+
+/* ===== TABLET ===== */
+
+@media (max-width: 900px) {
+    .mr-split-about {
+        padding: 68px 24px;
+    }
+
+    .mr-split-about__container {
+        gap: 42px;
+    }
+
+    .mr-split-about__image {
+        height: 390px;
+    }
+
+    .mr-split-about__title {
+        font-size: clamp(32px, 4.5vw, 42px);
+    }
+
+    .mr-split-about__intro {
+        font-size: 14px;
+    }
+
+    .mr-split-about__features {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .mr-split-about__actions {
+        gap: 17px;
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 640px) {
+    .mr-split-about {
+        padding: 48px 22px 55px;
+    }
+
+    .mr-split-about__container {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .mr-split-about__visual {
+        margin-right: 10px;
+        margin-bottom: 8px;
+    }
+
+    .mr-split-about__image {
+        height: clamp(245px, 70vw, 370px);
+    }
+
+    .mr-split-about__image-frame {
+        top: 10px;
+        right: -10px;
+        bottom: -10px;
+        left: 10px;
+    }
+
+    .mr-split-about__image-caption {
+        left: 12px;
+        bottom: 12px;
+        padding: 9px 11px;
+        font-size: 11px;
+    }
+
+    .mr-split-about__content {
+        padding: 0;
+    }
+
+    .mr-split-about__eyebrow {
+        margin-bottom: 16px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .mr-split-about__title {
+        margin-bottom: 18px;
+        font-size: clamp(34px, 9vw, 43px);
+        letter-spacing: -0.5px;
+    }
+
+    .mr-split-about__intro {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    .mr-split-about__description {
+        font-size: 12px;
+        line-height: 1.9;
+    }
+
+    .mr-split-about__features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px 12px;
+        margin-top: 21px;
+        padding-top: 19px;
+    }
+
+    .mr-split-about__features li {
+        font-size: 10px;
+    }
+
+    .mr-split-about__actions {
+        gap: 17px;
+        margin-top: 25px;
+    }
+
+    .mr-split-about__button {
+        min-height: 45px;
+        padding: 0 17px;
+    }
+}
+
+/* ===== SMALL PHONES ===== */
+
+@media (max-width: 360px) {
+    .mr-split-about {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .mr-split-about__title {
+        font-size: 32px;
+    }
+
+    .mr-split-about__features {
+        grid-template-columns: 1fr;
+    }
+
+    .mr-split-about__actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    .mr-split-about *,
+    .mr-split-about *::before,
+    .mr-split-about *::after {
+        transition: none !important;
+    }
+}
+&lt;/style&gt;
+                        </pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+<div>
+    <section class="container component-section " id="iconbased">
+        <h2 class="title">icon based</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="icon based services 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="icon based services 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="icon based services 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-icon-services" id="services"&gt;
+  &lt;div class="mr-icon-services__container"&gt;
+ 
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-icon-services__header"&gt;
+      &lt;span class="mr-icon-services__eyebrow"&gt;OUR EXPERTISE&lt;/span&gt;
+
+      &lt;h2 class="mr-icon-services__title"&gt;
+        What we do,&lt;br&gt;and how we help.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-icon-services__intro"&gt;
+        Practical, considered services designed to strengthen
+        your online presence and support your business growth.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Icon Grid --&gt;
+    &lt;div class="mr-icon-services__grid"&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;rect x="3" y="4" width="18" height="16" rx="2"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;path d="M3 9H21M8 4V9" stroke="currentColor"
+              stroke-width="1.4"/&gt;
+            &lt;path d="M7 13H12M7 16H16" stroke="currentColor"
+              stroke-width="1.4" stroke-linecap="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Website Design&lt;/h3&gt;
+        &lt;p&gt;Clear, thoughtful layouts that bring your brand to life.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;rect x="3" y="4" width="18" height="16" rx="2"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;path d="M3 8H21" stroke="currentColor"
+              stroke-width="1.4"/&gt;
+            &lt;circle cx="6" cy="6" r=".6" fill="currentColor"/&gt;
+            &lt;circle cx="9" cy="6" r=".6" fill="currentColor"/&gt;
+            &lt;path d="M7 12L10 15L7 18M13 18H17"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Web Development&lt;/h3&gt;
+        &lt;p&gt;Responsive, reliable websites built for everyday use.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;path d="M4 20V8L12 4L20 8V20"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linejoin="round"/&gt;
+            &lt;path d="M2.5 20H21.5M8 20V13H16V20"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linejoin="round"/&gt;
+            &lt;path d="M9 9H15" stroke="currentColor"
+              stroke-width="1.4" stroke-linecap="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Business Websites&lt;/h3&gt;
+        &lt;p&gt;Professional websites that explain your services and build trust.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;path d="M12 3V6M12 18V21M3 12H6M18 12H21"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round"/&gt;
+            &lt;circle cx="12" cy="12" r="5"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;path d="M9.5 12L11 13.5L14.5 10"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Maintenance&lt;/h3&gt;
+        &lt;p&gt;Regular updates and improvements to keep your site current.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;rect x="4" y="3" width="16" height="18" rx="2"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;path d="M8 8H16M8 12H16M8 16H13"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Landing Pages&lt;/h3&gt;
+        &lt;p&gt;Focused pages that communicate one clear message and action.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;rect x="3" y="4" width="18" height="16" rx="2"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;circle cx="8" cy="10" r="2"
+              stroke="currentColor" stroke-width="1.4"/&gt;
+            &lt;path d="M5 16L9 13L12 16L15 12L19 16"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Portfolio Websites&lt;/h3&gt;
+        &lt;p&gt;Polished online portfolios to present your work with confidence.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;path d="M4 19V5M4 19H21"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round"/&gt;
+            &lt;path d="M7 15L11 11L14 13L19 7"
+              stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+            &lt;path d="M15 7H19V11"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Performance&lt;/h3&gt;
+        &lt;p&gt;Practical improvements for a smoother, faster browsing experience.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-icon-services__item"&gt;
+        &lt;span class="mr-icon-services__icon" aria-hidden="true"&gt;
+          &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+            &lt;path d="M12 3L19 6V11C19 15.5 16 19 12 21C8 19 5 15.5 5 11V6L12 3Z"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linejoin="round"/&gt;
+            &lt;path d="M9 12L11 14L15 10"
+              stroke="currentColor" stroke-width="1.4"
+              stroke-linecap="round" stroke-linejoin="round"/&gt;
+          &lt;/svg&gt;
+        &lt;/span&gt;
+        &lt;h3&gt;Website Support&lt;/h3&gt;
+        &lt;p&gt;Reliable assistance when your website needs attention.&lt;/p&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Bottom CTA --&gt;
+    &lt;div class="mr-icon-services__footer"&gt;
+      &lt;p&gt;Looking for the right solution for your business?&lt;/p&gt;
+      &lt;a href="#contact" class="mr-icon-services__cta"&gt;
+        Let's discuss your project &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ==================================
+   MODERN REFINED — ICON SERVICES GRID
+================================== */
+
+.mr-icon-services {
+  --mis-bg: #faf9f6;
+  --mis-card: #fffefa;
+  --mis-text: #282c29;
+  --mis-muted: #777a74;
+  --mis-accent: #947956;
+  --mis-border: #e7e3db;
+
+  width: 100%;
+  padding: 88px 24px;
+  box-sizing: border-box;
+  background: var(--mis-bg);
+  color: var(--mis-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-icon-services *,
+.mr-icon-services *::before,
+.mr-icon-services *::after {
+  box-sizing: border-box;
+}
+
+.mr-icon-services__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-icon-services__header {
+  max-width: 640px;
+  margin-bottom: 42px;
+}
+
+.mr-icon-services__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mis-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-icon-services__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+}
+
+.mr-icon-services__intro {
+  max-width: 500px;
+  margin: 0;
+  color: var(--mis-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Responsive Grid */
+
+.mr-icon-services__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--mis-border);
+  border-left: 1px solid var(--mis-border);
+}
+
+/* Individual Item */
+
+.mr-icon-services__item {
+  min-width: 0;
+  padding: 25px 21px 27px;
+  border-right: 1px solid var(--mis-border);
+  border-bottom: 1px solid var(--mis-border);
+  background: transparent;
+  transition: background-color 0.25s ease;
+}
+
+.mr-icon-services__item:hover {
+  background: var(--mis-card);
+}
+
+.mr-icon-services__icon {
+  display: grid;
+  width: 45px;
+  height: 45px;
+  margin-bottom: 25px;
+  place-items: center;
+  border: 1px solid var(--mis-border);
+  border-radius: 50%;
+  color: var(--mis-accent);
+  background: var(--mis-card);
+}
+
+.mr-icon-services__icon svg {
+  display: block;
+  width: 21px;
+  height: 21px;
+}
+
+.mr-icon-services__item h3 {
+  margin: 0 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mr-icon-services__item p {
+  margin: 0;
+  color: var(--mis-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Footer CTA */
+
+.mr-icon-services__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid var(--mis-border);
+}
+
+.mr-icon-services__footer p {
+  margin: 0;
+  color: var(--mis-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.mr-icon-services__cta {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border: 1px solid var(--mis-text);
+  color: var(--mis-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.mr-icon-services__cta:hover {
+  background: var(--mis-text);
+  color: #fff;
+}
+
+.mr-icon-services__cta:focus-visible {
+  outline: 2px solid var(--mis-accent);
+  outline-offset: 4px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .mr-icon-services {
+    padding: 72px 24px;
+  }
+
+  .mr-icon-services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-icon-services__item {
+    padding: 24px 22px;
+  }
+
+  .mr-icon-services__icon {
+    margin-bottom: 21px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-icon-services {
+    padding: 56px 16px;
+  }
+
+  .mr-icon-services__header {
+    margin-bottom: 28px;
+  }
+
+  .mr-icon-services__eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-icon-services__title {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-icon-services__intro {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .mr-icon-services__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-icon-services__item {
+    padding: 19px 13px 21px;
+  }
+
+  .mr-icon-services__icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 17px;
+  }
+
+  .mr-icon-services__icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .mr-icon-services__item h3 {
+    margin-bottom: 8px;
+    font-size: 17px;
+  }
+
+  .mr-icon-services__item p {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .mr-icon-services__footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 24px;
+    padding-top: 21px;
+  }
+
+  .mr-icon-services__footer p {
+    font-size: 13px;
+  }
+
+  .mr-icon-services__cta {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-icon-services *,
+  .mr-icon-services *::before,
+  .mr-icon-services *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="servicecards">
+        <h2 class="title">service cards</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="service cards 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="service cards 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="service cards 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-service-cards" id="services"&gt;
+  &lt;div class="mr-service-cards__container"&gt;
+ 
+    &lt;!-- Section Heading --&gt;
+    &lt;header class="mr-service-cards__header"&gt;
+      &lt;span class="mr-service-cards__eyebrow"&gt;OUR SERVICES&lt;/span&gt;
+
+      &lt;h2 class="mr-service-cards__title"&gt;
+        Thoughtful solutions.&lt;br&gt;
+        Meaningful results.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-service-cards__intro"&gt;
+        From the first idea to the final details, we provide
+        considered solutions designed around your business.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Service Cards --&gt;
+    &lt;div class="mr-service-cards__grid"&gt;
+
+      &lt;!-- Card 1 --&gt;
+      &lt;article class="mr-service-cards__card"&gt;
+        &lt;div class="mr-service-cards__top"&gt;
+          &lt;span class="mr-service-cards__number"&gt;01&lt;/span&gt;
+          &lt;span class="mr-service-cards__icon" aria-hidden="true"&gt;
+            &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+              &lt;rect x="3" y="4" width="18" height="16" rx="2"
+                    stroke="currentColor" stroke-width="1.4"/&gt;
+              &lt;path d="M3 9H21M8 4V9" stroke="currentColor"
+                    stroke-width="1.4"/&gt;
+              &lt;path d="M7 13H12M7 16H16" stroke="currentColor"
+                    stroke-width="1.4" stroke-linecap="round"/&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Website Design&lt;/h3&gt;
+
+        &lt;p&gt;
+          Refined, user-focused designs that express your brand
+          clearly and create a memorable first impression.
+        &lt;/p&gt;
+
+        &lt;a href="#contact" class="mr-service-cards__link"&gt;
+          Explore service &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/article&gt;
+
+      &lt;!-- Card 2 --&gt;
+      &lt;article class="mr-service-cards__card"&gt;
+        &lt;div class="mr-service-cards__top"&gt;
+          &lt;span class="mr-service-cards__number"&gt;02&lt;/span&gt;
+          &lt;span class="mr-service-cards__icon" aria-hidden="true"&gt;
+            &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+              &lt;rect x="3" y="4" width="18" height="16" rx="2"
+                    stroke="currentColor" stroke-width="1.4"/&gt;
+              &lt;path d="M3 8H21" stroke="currentColor"
+                    stroke-width="1.4"/&gt;
+              &lt;circle cx="6" cy="6" r=".6" fill="currentColor"/&gt;
+              &lt;circle cx="9" cy="6" r=".6" fill="currentColor"/&gt;
+              &lt;path d="M7 12L10 15L7 18M13 18H17"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linecap="round" stroke-linejoin="round"/&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Web Development&lt;/h3&gt;
+
+        &lt;p&gt;
+          Responsive, reliable websites built with attention
+          to performance, usability, and detail.
+        &lt;/p&gt;
+
+        &lt;a href="#contact" class="mr-service-cards__link"&gt;
+          Explore service &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/article&gt;
+
+      &lt;!-- Card 3 --&gt;
+      &lt;article class="mr-service-cards__card"&gt;
+        &lt;div class="mr-service-cards__top"&gt;
+          &lt;span class="mr-service-cards__number"&gt;03&lt;/span&gt;
+          &lt;span class="mr-service-cards__icon" aria-hidden="true"&gt;
+            &lt;svg viewBox="0 0 24 24" fill="none"&gt;
+              &lt;path d="M4 20V8L12 4L20 8V20"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linejoin="round"/&gt;
+              &lt;path d="M2.5 20H21.5M8 20V13H16V20"
+                    stroke="currentColor" stroke-width="1.4"
+                    stroke-linejoin="round"/&gt;
+              &lt;path d="M9 9H15" stroke="currentColor"
+                    stroke-width="1.4" stroke-linecap="round"/&gt;
+            &lt;/svg&gt;
+          &lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Business Websites&lt;/h3&gt;
+
+        &lt;p&gt;
+          Professional online experiences that showcase your
+          services, build trust, and encourage enquiries.
+        &lt;/p&gt;
+
+        &lt;a href="#contact" class="mr-service-cards__link"&gt;
+          Explore service &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Bottom CTA --&gt;
+    &lt;div class="mr-service-cards__footer"&gt;
+      &lt;p&gt;Have a specific project in mind?&lt;/p&gt;
+      &lt;a href="#contact" class="mr-service-cards__cta"&gt;
+        Let's talk about it &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ====================================
+   MODERN REFINED — SERVICE CARD SECTION
+==================================== */
+
+.mr-service-cards {
+  --msc-bg: #faf9f6;
+  --msc-card-bg: #fffefa;
+  --msc-text: #282c29;
+  --msc-muted: #777a74;
+  --msc-accent: #947956;
+  --msc-border: #e7e3db;
+
+  width: 100%;
+  padding: 90px 24px;
+  box-sizing: border-box;
+  background: var(--msc-bg);
+  color: var(--msc-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-service-cards *,
+.mr-service-cards *::before,
+.mr-service-cards *::after {
+  box-sizing: border-box;
+}
+
+.mr-service-cards__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-service-cards__header {
+  max-width: 650px;
+  margin-bottom: 42px;
+}
+
+.mr-service-cards__eyebrow {
+  display: inline-block;
+  margin-bottom: 17px;
+  color: var(--msc-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-service-cards__title {
+  margin: 0 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+}
+
+.mr-service-cards__intro {
+  max-width: 510px;
+  margin: 0;
+  color: var(--msc-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Grid */
+
+.mr-service-cards__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Individual Cards */
+
+.mr-service-cards__card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 27px 25px 24px;
+  border: 1px solid var(--msc-border);
+  background: var(--msc-card-bg);
+  transition: border-color 0.25s ease,
+              transform 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.mr-service-cards__card:hover {
+  transform: translateY(-4px);
+  border-color: #c9bba7;
+  box-shadow: 0 12px 28px rgba(40, 44, 41, 0.045);
+}
+
+.mr-service-cards__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 31px;
+}
+
+.mr-service-cards__number {
+  color: var(--msc-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+}
+
+.mr-service-cards__icon {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  place-items: center;
+  border: 1px solid var(--msc-border);
+  border-radius: 50%;
+  color: var(--msc-accent);
+}
+
+.mr-service-cards__icon svg {
+  display: block;
+  width: 21px;
+  height: 21px;
+}
+
+.mr-service-cards__card h3 {
+  margin: 0 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.mr-service-cards__card p {
+  margin: 0 0 27px;
+  color: var(--msc-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.mr-service-cards__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--msc-border);
+  color: var(--msc-text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mr-service-cards__link span {
+  color: var(--msc-accent);
+  font-size: 16px;
+}
+
+.mr-service-cards__link:hover {
+  color: var(--msc-accent);
+  border-color: var(--msc-accent);
+}
+
+.mr-service-cards__link:focus-visible,
+.mr-service-cards__cta:focus-visible {
+  outline: 2px solid var(--msc-accent);
+  outline-offset: 4px;
+}
+
+/* Footer CTA */
+
+.mr-service-cards__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 32px;
+  padding-top: 25px;
+  border-top: 1px solid var(--msc-border);
+}
+
+.mr-service-cards__footer p {
+  margin: 0;
+  color: var(--msc-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.mr-service-cards__cta {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 12px 19px;
+  border: 1px solid var(--msc-text);
+  color: var(--msc-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.mr-service-cards__cta:hover {
+  background: var(--msc-text);
+  color: #fff;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .mr-service-cards {
+    padding: 76px 24px;
+  }
+
+  .mr-service-cards__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .mr-service-cards__card {
+    padding: 24px 22px;
+  }
+
+  .mr-service-cards__top {
+    margin-bottom: 25px;
+  }
+
+  .mr-service-cards__card h3 {
+    font-size: 22px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+  .mr-service-cards {
+    padding: 58px 18px;
+  }
+
+  .mr-service-cards__header {
+    margin-bottom: 29px;
+  }
+
+  .mr-service-cards__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-service-cards__title {
+    font-size: 35px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-service-cards__intro {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .mr-service-cards__grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .mr-service-cards__card {
+    padding: 22px 21px;
+  }
+
+  .mr-service-cards__top {
+    margin-bottom: 22px;
+  }
+
+  .mr-service-cards__icon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .mr-service-cards__card h3 {
+    font-size: 22px;
+  }
+
+  .mr-service-cards__card p {
+    margin-bottom: 22px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-service-cards__footer {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 26px;
+    padding-top: 22px;
+  }
+
+  .mr-service-cards__cta {
+    width: 100%;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-service-cards *,
+  .mr-service-cards *::before,
+  .mr-service-cards *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="serviceslist">
+        <h2 class="title">services list</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="services list 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="services list 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="services list 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-services" id="services"&gt;
+  &lt;div class="mr-services__container"&gt;
+ 
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-services__header"&gt;
+      &lt;span class="mr-services__eyebrow"&gt;WHAT WE OFFER&lt;/span&gt;
+
+      &lt;h2 class="mr-services__title"&gt;
+        Services designed&lt;br class="mr-services__desktop-break"&gt;
+        around your business.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-services__intro"&gt;
+        Thoughtful solutions, clear processes, and quality work
+        tailored to your business needs.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Simple Service List --&gt;
+    &lt;div class="mr-services__list"&gt;
+
+      &lt;article class="mr-services__item"&gt;
+        &lt;span class="mr-services__number"&gt;01&lt;/span&gt;
+
+        &lt;div class="mr-services__content"&gt;
+          &lt;h3&gt;Website Design&lt;/h3&gt;
+          &lt;p&gt;
+            Clean, modern website designs that communicate your
+            brand and create a strong first impression.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-services__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-services__item"&gt;
+        &lt;span class="mr-services__number"&gt;02&lt;/span&gt;
+
+        &lt;div class="mr-services__content"&gt;
+          &lt;h3&gt;Website Development&lt;/h3&gt;
+          &lt;p&gt;
+            Responsive, reliable websites built for usability,
+            performance, and your business goals.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-services__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-services__item"&gt;
+        &lt;span class="mr-services__number"&gt;03&lt;/span&gt;
+
+        &lt;div class="mr-services__content"&gt;
+          &lt;h3&gt;Business Websites&lt;/h3&gt;
+          &lt;p&gt;
+            Professional online experiences that explain your
+            services and help customers take the next step.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-services__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-services__item"&gt;
+        &lt;span class="mr-services__number"&gt;04&lt;/span&gt;
+
+        &lt;div class="mr-services__content"&gt;
+          &lt;h3&gt;Website Maintenance&lt;/h3&gt;
+          &lt;p&gt;
+            Ongoing updates and improvements to help keep your
+            website accurate, consistent, and running smoothly.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-services__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Section CTA --&gt;
+    &lt;div class="mr-services__footer"&gt;
+      &lt;p&gt;Have a project in mind?&lt;/p&gt;
+      &lt;a href="#contact" class="mr-services__cta"&gt;
+        Discuss your project &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ==================================
+   MODERN REFINED — SERVICES OVERVIEW
+================================== */
+
+.mr-services {
+  --mr-bg: #faf9f6;
+  --mr-surface: #ffffff;
+  --mr-text: #252a29;
+  --mr-muted: #777b76;
+  --mr-accent: #987b59;
+  --mr-border: #e6e3dc;
+
+  width: 100%;
+  box-sizing: border-box;
+  padding: 96px 24px;
+  background: var(--mr-bg);
+  color: var(--mr-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-services *,
+.mr-services *::before,
+.mr-services *::after {
+  box-sizing: border-box;
+}
+
+.mr-services__container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-services__header {
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
+.mr-services__eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: var(--mr-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-services__title {
+  margin: 0 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 54px);
+  font-weight: 400;
+  line-height: 1.13;
+  letter-spacing: -1.5px;
+}
+
+.mr-services__intro {
+  max-width: 500px;
+  margin: 0;
+  color: var(--mr-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* Service List */
+
+.mr-services__list {
+  border-top: 1px solid var(--mr-border);
+}
+
+.mr-services__item {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr) 32px;
+  align-items: center;
+  gap: 24px;
+  padding: 30px 10px;
+  border-bottom: 1px solid var(--mr-border);
+  transition: background-color 0.25s ease,
+              padding 0.25s ease;
+}
+
+.mr-services__item:hover {
+  padding-right: 18px;
+  padding-left: 18px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.mr-services__number {
+  align-self: start;
+  padding-top: 5px;
+  color: var(--mr-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+}
+
+.mr-services__content h3 {
+  margin: 0 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.mr-services__content p {
+  max-width: 570px;
+  margin: 0;
+  color: var(--mr-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.mr-services__arrow {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--mr-border);
+  border-radius: 50%;
+  color: var(--mr-text);
+  font-size: 17px;
+  transition: background-color 0.25s ease,
+              color 0.25s ease,
+              border-color 0.25s ease;
+}
+
+.mr-services__item:hover .mr-services__arrow {
+  background: var(--mr-text);
+  border-color: var(--mr-text);
+  color: #ffffff;
+}
+
+/* Footer CTA */
+
+.mr-services__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 34px;
+}
+
+.mr-services__footer p {
+  margin: 0;
+  color: var(--mr-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.mr-services__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid var(--mr-text);
+  color: var(--mr-text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background-color 0.25s ease,
+              color 0.25s ease;
+}
+
+.mr-services__cta:hover {
+  background: var(--mr-text);
+  color: #ffffff;
+}
+
+.mr-services__cta:focus-visible {
+  outline: 2px solid var(--mr-accent);
+  outline-offset: 4px;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .mr-services {
+    padding: 76px 24px;
+  }
+
+  .mr-services__header {
+    margin-bottom: 38px;
+  }
+
+  .mr-services__title {
+    font-size: clamp(34px, 5.5vw, 44px);
+  }
+
+  .mr-services__item {
+    grid-template-columns: 38px minmax(0, 1fr) 30px;
+    gap: 16px;
+    padding: 25px 4px;
+  }
+
+  .mr-services__item:hover {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .mr-services__content h3 {
+    font-size: 22px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-services {
+    padding: 58px 18px;
+  }
+
+  .mr-services__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-services__title {
+    margin-bottom: 15px;
+    font-size: 35px;
+    letter-spacing: -1px;
+    line-height: 1.17;
+  }
+
+  .mr-services__desktop-break {
+    display: none;
+  }
+
+  .mr-services__intro {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .mr-services__header {
+    margin-bottom: 30px;
+  }
+
+  .mr-services__item {
+    grid-template-columns: 28px minmax(0, 1fr) 26px;
+    gap: 10px;
+    padding: 22px 0;
+  }
+
+  .mr-services__item:hover {
+    padding-right: 0;
+    padding-left: 0;
+    background: transparent;
+  }
+
+  .mr-services__number {
+    padding-top: 4px;
+    font-size: 14px;
+  }
+
+  .mr-services__content h3 {
+    margin-bottom: 7px;
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .mr-services__content p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .mr-services__arrow {
+    width: 27px;
+    height: 27px;
+    font-size: 14px;
+  }
+
+  .mr-services__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 26px;
+  }
+
+  .mr-services__cta {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+/* Reduced Motion Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-services *,
+  .mr-services *::before,
+  .mr-services *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+
+    <section class="container component-section " id="featuredimage">
+        <h2 class="title">featured image</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="featured image gallery 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="featured image gallery 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="featured image gallery 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-featured-gallery" id="gallery"&gt;
+  &lt;div class="mr-featured-gallery__container"&gt;
+
+    &lt;!-- Header --&gt;
+    &lt;header class="mr-featured-gallery__header"&gt;
+      &lt;span class="mr-featured-gallery__eyebrow"&gt;SELECTED WORK&lt;/span&gt;
+
+      &lt;h2 class="mr-featured-gallery__title"&gt;
+        Designed with intention.&lt;br&gt;
+        Created to inspire.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-featured-gallery__intro"&gt;
+        A closer look at the details, materials, and ideas
+        behind our selected projects.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Gallery Layout --&gt;
+    &lt;div class="mr-featured-gallery__layout"&gt;
+
+      &lt;!-- Featured Image --&gt;
+      &lt;div class="mr-featured-gallery__main"&gt;
+        &lt;img
+          class="mr-featured-gallery__featured-image"
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"
+          alt="Elegant contemporary interior with warm neutral tones"
+        &gt;
+
+        &lt;span class="mr-featured-gallery__image-count"&gt;
+          PROJECT 01 / 04
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;!-- Project Information --&gt;
+      &lt;aside class="mr-featured-gallery__details"&gt;
+        &lt;span class="mr-featured-gallery__project-label"&gt;
+          FEATURED PROJECT
+        &lt;/span&gt;
+
+        &lt;h3 class="mr-featured-gallery__project-title"&gt;
+          The Art of&lt;br&gt;Quiet Living
+        &lt;/h3&gt;
+
+        &lt;p class="mr-featured-gallery__description"&gt;
+          A considered approach to modern design, bringing
+          together natural textures, thoughtful proportions,
+          and understated details.
+        &lt;/p&gt;
+
+        &lt;div class="mr-featured-gallery__meta"&gt;
+          &lt;div&gt;
+            &lt;span&gt;DISCIPLINE&lt;/span&gt;
+            &lt;p&gt;Interior &amp;amp; Design&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div&gt;
+            &lt;span&gt;APPROACH&lt;/span&gt;
+            &lt;p&gt;Modern Minimalism&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;a href="#project-details" class="mr-featured-gallery__link"&gt;
+          Explore this project &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/aside&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Thumbnail Gallery --&gt;
+    &lt;div class="mr-featured-gallery__thumbnail-section"&gt;
+      &lt;div class="mr-featured-gallery__thumbnail-heading"&gt;
+        &lt;span&gt;FROM THE COLLECTION&lt;/span&gt;
+        &lt;span class="mr-featured-gallery__thumbnail-hint"&gt;
+          Select an image to preview
+        &lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;div class="mr-featured-gallery__thumbnails"&gt;
+
+        &lt;button
+          class="mr-featured-gallery__thumbnail is-active"
+          type="button"
+          data-image="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"
+          data-alt="Elegant contemporary interior with warm neutral tones"
+          data-title="The Art of Quiet Living"
+          data-category="Interior &amp;amp; Design"
+          data-number="01"
+          aria-pressed="true"
+          aria-label="Show The Art of Quiet Living"
+        &gt;
+          &lt;img
+            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=360&amp;q=75"
+            alt=""
+            loading="lazy"
+          &gt;
+          &lt;span&gt;01&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;button
+          class="mr-featured-gallery__thumbnail"
+          type="button"
+          data-image="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"
+          data-alt="Minimal modern living room with natural light"
+          data-title="Light &amp;amp; Form"
+          data-category="Residential Design"
+          data-number="02"
+          aria-pressed="false"
+          aria-label="Show Light and Form"
+        &gt;
+          &lt;img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=360&amp;q=75"
+            alt=""
+            loading="lazy"
+          &gt;
+          &lt;span&gt;02&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;button
+          class="mr-featured-gallery__thumbnail"
+          type="button"
+          data-image="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"
+          data-alt="Refined modern architecture with natural materials"
+          data-title="Modern Retreat"
+          data-category="Architecture"
+          data-number="03"
+          aria-pressed="false"
+          aria-label="Show Modern Retreat"
+        &gt;
+          &lt;img
+            src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=360&amp;q=75"
+            alt=""
+            loading="lazy"
+          &gt;
+          &lt;span&gt;03&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;button
+          class="mr-featured-gallery__thumbnail"
+          type="button"
+          data-image="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=1600&amp;q=85"
+          data-alt="Contemporary interior with warm wood and understated styling"
+          data-title="Natural Balance"
+          data-category="Interior Styling"
+          data-number="04"
+          aria-pressed="false"
+          aria-label="Show Natural Balance"
+        &gt;
+          &lt;img
+            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=360&amp;q=75"
+            alt=""
+            loading="lazy"
+          &gt;
+          &lt;span&gt;04&lt;/span&gt;
+        &lt;/button&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =====================================
+   MODERN REFINED — FEATURED IMAGE GALLERY
+===================================== */
+
+.mr-featured-gallery {
+  --mfg-bg: #faf9f6;
+  --mfg-card: #fffefa;
+  --mfg-text: #292d29;
+  --mfg-muted: #777a74;
+  --mfg-accent: #947956;
+  --mfg-border: #e6e2d9;
+
+  width: 100%;
+  padding: 88px 24px;
+  box-sizing: border-box;
+  background: var(--mfg-bg);
+  color: var(--mfg-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-featured-gallery *,
+.mr-featured-gallery *::before,
+.mr-featured-gallery *::after {
+  box-sizing: border-box;
+}
+
+.mr-featured-gallery__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-featured-gallery__header {
+  max-width: 650px;
+  margin-bottom: 38px;
+}
+
+.mr-featured-gallery__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mfg-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-featured-gallery__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+
+.mr-featured-gallery__intro {
+  max-width: 480px;
+  margin: 0;
+  color: var(--mfg-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Main Gallery Layout */
+
+.mr-featured-gallery__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(250px, 0.8fr);
+  gap: 40px;
+  align-items: center;
+}
+
+/* Featured Image */
+
+.mr-featured-gallery__main {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.35 / 1;
+  overflow: hidden;
+  background: #e9e4db;
+}
+
+.mr-featured-gallery__featured-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.25s ease;
+}
+
+.mr-featured-gallery__image-count {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 9px 12px;
+  background: rgba(250, 249, 246, 0.94);
+  color: var(--mfg-text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+/* Project Details */
+
+.mr-featured-gallery__details {
+  min-width: 0;
+  padding: 10px 0;
+}
+
+.mr-featured-gallery__project-label {
+  color: var(--mfg-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+}
+
+.mr-featured-gallery__project-title {
+  margin: 17px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 3vw, 39px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+}
+
+.mr-featured-gallery__description {
+  margin: 0;
+  color: var(--mfg-muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.mr-featured-gallery__meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  margin-top: 27px;
+  padding: 21px 0;
+  border-top: 1px solid var(--mfg-border);
+  border-bottom: 1px solid var(--mfg-border);
+}
+
+.mr-featured-gallery__meta span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--mfg-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.mr-featured-gallery__meta p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mr-featured-gallery__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--mfg-text);
+  color: var(--mfg-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mr-featured-gallery__link:hover {
+  color: var(--mfg-accent);
+  border-color: var(--mfg-accent);
+}
+
+/* Thumbnail Section */
+
+.mr-featured-gallery__thumbnail-section {
+  margin-top: 36px;
+  padding-top: 22px;
+  border-top: 1px solid var(--mfg-border);
+}
+
+.mr-featured-gallery__thumbnail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.mr-featured-gallery__thumbnail-heading &gt; span:first-child {
+  color: var(--mfg-text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+
+.mr-featured-gallery__thumbnail-hint {
+  color: var(--mfg-muted);
+  font-size: 11px;
+}
+
+.mr-featured-gallery__thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.mr-featured-gallery__thumbnail {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid transparent;
+  background: #e9e4db;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.mr-featured-gallery__thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.mr-featured-gallery__thumbnail:hover {
+  opacity: 1;
+}
+
+.mr-featured-gallery__thumbnail:hover img {
+  transform: scale(1.04);
+}
+
+.mr-featured-gallery__thumbnail.is-active {
+  border: 2px solid var(--mfg-accent);
+  padding: 2px;
+  opacity: 1;
+}
+
+.mr-featured-gallery__thumbnail &gt; span {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  padding: 4px 6px;
+  background: rgba(28, 30, 28, 0.72);
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.mr-featured-gallery__thumbnail:focus-visible,
+.mr-featured-gallery__link:focus-visible {
+  outline: 2px solid var(--mfg-accent);
+  outline-offset: 4px;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+  .mr-featured-gallery {
+    padding: 72px 24px;
+  }
+
+  .mr-featured-gallery__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(210px, 0.75fr);
+    gap: 25px;
+  }
+
+  .mr-featured-gallery__main {
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .mr-featured-gallery__project-title {
+    font-size: 31px;
+  }
+
+  .mr-featured-gallery__thumbnails {
+    gap: 10px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+  .mr-featured-gallery {
+    padding: 56px 17px;
+  }
+
+  .mr-featured-gallery__header {
+    margin-bottom: 27px;
+  }
+
+  .mr-featured-gallery__eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-featured-gallery__title {
+    font-size: 35px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-featured-gallery__intro {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-featured-gallery__layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .mr-featured-gallery__main {
+    aspect-ratio: 4 / 3;
+  }
+
+  .mr-featured-gallery__details {
+    padding: 0;
+  }
+
+  .mr-featured-gallery__project-title {
+    margin: 12px 0;
+    font-size: 32px;
+  }
+
+  .mr-featured-gallery__description {
+    font-size: 13px;
+  }
+
+  .mr-featured-gallery__meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 21px;
+    padding: 17px 0;
+  }
+
+  .mr-featured-gallery__link {
+    margin-top: 20px;
+  }
+
+  .mr-featured-gallery__thumbnail-section {
+    margin-top: 30px;
+    padding-top: 19px;
+  }
+
+  .mr-featured-gallery__thumbnail-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mr-featured-gallery__thumbnails {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .mr-featured-gallery__thumbnail {
+    aspect-ratio: 1 / 1;
+  }
+
+  .mr-featured-gallery__thumbnail &gt; span {
+    right: 4px;
+    bottom: 4px;
+    padding: 3px 4px;
+    font-size: 9px;
+  }
+
+  .mr-featured-gallery__image-count {
+    right: 10px;
+    bottom: 10px;
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-featured-gallery *,
+  .mr-featured-gallery *::before,
+  .mr-featured-gallery *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+&lt;/style&gt;
+
+&lt;script&gt;
+(function () {
+  const galleries = document.querySelectorAll(".mr-featured-gallery");
+
+  galleries.forEach(function (gallery) {
+    const featuredImage = gallery.querySelector(
+      ".mr-featured-gallery__featured-image"
+    );
+    const count = gallery.querySelector(
+      ".mr-featured-gallery__image-count"
+    );
+    const projectTitle = gallery.querySelector(
+      ".mr-featured-gallery__project-title"
+    );
+    const projectCategory = gallery.querySelector(
+      ".mr-featured-gallery__meta &gt; div:first-child p"
+    );
+    const thumbnails = gallery.querySelectorAll(
+      ".mr-featured-gallery__thumbnail"
+    );
+
+    thumbnails.forEach(function (thumbnail) {
+      thumbnail.addEventListener("click", function () {
+        const image = thumbnail.dataset.image;
+        const alt = thumbnail.dataset.alt;
+        const title = thumbnail.dataset.title;
+        const category = thumbnail.dataset.category;
+        const number = thumbnail.dataset.number;
+
+        featuredImage.style.opacity = "0.35";
+
+        const newImage = new Image();
+
+        newImage.onload = function () {
+          featuredImage.src = image;
+          featuredImage.alt = alt;
+          featuredImage.style.opacity = "1";
+        };
+
+        newImage.onerror = function () {
+          featuredImage.style.opacity = "1";
+        };
+
+        newImage.src = image;
+
+        projectTitle.textContent = title;
+        projectCategory.textContent = category;
+        count.textContent = "PROJECT " + number + " / 04";
+
+        thumbnails.forEach(function (item) {
+          const active = item === thumbnail;
+          item.classList.toggle("is-active", active);
+          item.setAttribute("aria-pressed", String(active));
+        });
+      });
+    });
+  });
+})();
+&lt;/script&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="mansonrygallery">
+        <h2 class="title">masonry gallery</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="mansory gallery 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="mansory gallery 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="mansory gallery 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+
+                    <pre>
+&lt;section class="mr-masonry-gallery" id="gallery"&gt;
+  &lt;div class="mr-masonry-gallery__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-masonry-gallery__header"&gt;
+      &lt;div class="mr-masonry-gallery__heading"&gt;
+        &lt;span class="mr-masonry-gallery__eyebrow"&gt;SELECTED WORK&lt;/span&gt;
+
+        &lt;h2 class="mr-masonry-gallery__title"&gt;
+          A collection of&lt;br&gt;considered details.
+        &lt;/h2&gt;
+      &lt;/div&gt;
+
+      &lt;div class="mr-masonry-gallery__intro"&gt;
+        &lt;p&gt;
+          Explore selected projects shaped by thoughtful design,
+          careful craftsmanship, and a refined visual approach.
+        &lt;/p&gt;
+
+        &lt;a href="#all-projects" class="mr-masonry-gallery__view-all"&gt;
+          View all projects &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Masonry Grid --&gt;
+    &lt;div class="mr-masonry-gallery__grid"&gt;
+
+      &lt;!-- Project 1 --&gt;
+      &lt;a href="#project-one"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--tall"
+         aria-label="View The Quiet Residence project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Contemporary interior with warm neutral tones and elegant furnishings"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;INTERIOR DESIGN&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;The Quiet Residence&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Project 2 --&gt;
+      &lt;a href="#project-two"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--short"
+         aria-label="View Light and Form project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Minimal living space with natural light and understated finishes"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;RESIDENTIAL&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;Light &amp;amp; Form&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Project 3 --&gt;
+      &lt;a href="#project-three"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--medium"
+         aria-label="View Modern Retreat project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Modern architectural interior with natural materials"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;ARCHITECTURE&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;Modern Retreat&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Project 4 --&gt;
+      &lt;a href="#project-four"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--medium"
+         aria-label="View Natural Balance project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Refined interior featuring warm wood and neutral materials"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;INTERIOR STYLING&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;Natural Balance&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Project 5 --&gt;
+      &lt;a href="#project-five"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--short"
+         aria-label="View The Open House project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Bright modern home with carefully balanced architectural details"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;CONTEMPORARY LIVING&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;The Open House&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Project 6 --&gt;
+      &lt;a href="#project-six"
+         class="mr-masonry-gallery__item mr-masonry-gallery__item--tall"
+         aria-label="View Earth and Element project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&amp;fit=crop&amp;w=1000&amp;q=85"
+          alt="Warm contemporary space with natural textures and minimal decor"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-masonry-gallery__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__caption"&gt;
+          &lt;span class="mr-masonry-gallery__category"&gt;DESIGN DETAILS&lt;/span&gt;
+          &lt;span class="mr-masonry-gallery__name"&gt;Earth &amp;amp; Element&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-masonry-gallery__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Gallery Footer --&gt;
+    &lt;footer class="mr-masonry-gallery__footer"&gt;
+      &lt;span class="mr-masonry-gallery__count"&gt;01 — 06&lt;/span&gt;
+
+      &lt;p&gt;Every project begins with a thoughtful point of view.&lt;/p&gt;
+
+      &lt;a href="#all-projects" class="mr-masonry-gallery__footer-link"&gt;
+        Discover more &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =================================
+   MODERN REFINED — MASONRY GALLERY
+================================= */
+
+.mr-masonry-gallery {
+  --mmg-bg: #faf9f6;
+  --mmg-text: #292d29;
+  --mmg-muted: #777a74;
+  --mmg-accent: #d7c4a8;
+  --mmg-border: #e6e2d9;
+
+  width: 100%;
+  padding: 88px 24px;
+  box-sizing: border-box;
+  background: var(--mmg-bg);
+  color: var(--mmg-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-masonry-gallery *,
+.mr-masonry-gallery *::before,
+.mr-masonry-gallery *::after {
+  box-sizing: border-box;
+}
+
+.mr-masonry-gallery__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-masonry-gallery__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 36px;
+  margin-bottom: 38px;
+}
+
+.mr-masonry-gallery__heading {
+  max-width: 600px;
+}
+
+.mr-masonry-gallery__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mmg-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-masonry-gallery__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+}
+
+.mr-masonry-gallery__intro {
+  width: 100%;
+  max-width: 340px;
+}
+
+.mr-masonry-gallery__intro p {
+  margin: 0 0 18px;
+  color: var(--mmg-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.mr-masonry-gallery__view-all,
+.mr-masonry-gallery__footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--mmg-border);
+  color: var(--mmg-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.mr-masonry-gallery__view-all:hover,
+.mr-masonry-gallery__footer-link:hover {
+  color: var(--mmg-muted);
+  border-color: var(--mmg-text);
+}
+
+/* Masonry Grid */
+
+.mr-masonry-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: dense;
+  gap: 16px;
+  align-items: start;
+}
+
+.mr-masonry-gallery__item {
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  background: #e9e4db;
+  color: #fff;
+  isolation: isolate;
+  text-decoration: none;
+}
+
+.mr-masonry-gallery__item--tall {
+  aspect-ratio: 0.78 / 1;
+}
+
+.mr-masonry-gallery__item--medium {
+  aspect-ratio: 0.92 / 1;
+}
+
+.mr-masonry-gallery__item--short {
+  aspect-ratio: 1.15 / 1;
+}
+
+/* Staggered Arrangement */
+
+.mr-masonry-gallery__item:nth-child(3n + 2) {
+  margin-top: 36px;
+}
+
+.mr-masonry-gallery__item:nth-child(3n) {
+  margin-top: 72px;
+}
+
+/* Image */
+
+.mr-masonry-gallery__item img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.mr-masonry-gallery__item:hover img {
+  transform: scale(1.045);
+}
+
+/* Image Overlay */
+
+.mr-masonry-gallery__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(20, 22, 20, 0.78) 0%,
+    rgba(20, 22, 20, 0.18) 36%,
+    rgba(20, 22, 20, 0.02) 70%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.mr-masonry-gallery__item:hover .mr-masonry-gallery__overlay {
+  opacity: 0.88;
+}
+
+/* Captions */
+
+.mr-masonry-gallery__caption {
+  position: absolute;
+  right: 19px;
+  bottom: 20px;
+  left: 19px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mr-masonry-gallery__category {
+  color: var(--mmg-accent);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.5;
+}
+
+.mr-masonry-gallery__name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.mr-masonry-gallery__arrow {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.mr-masonry-gallery__item:hover .mr-masonry-gallery__arrow {
+  background: #fff;
+  color: var(--mmg-text);
+}
+
+.mr-masonry-gallery__item:focus-visible,
+.mr-masonry-gallery__view-all:focus-visible,
+.mr-masonry-gallery__footer-link:focus-visible {
+  outline: 2px solid #947956;
+  outline-offset: 4px;
+}
+
+/* Footer */
+
+.mr-masonry-gallery__footer {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  margin-top: 35px;
+  padding-top: 22px;
+  border-top: 1px solid var(--mmg-border);
+}
+
+.mr-masonry-gallery__count {
+  color: var(--mmg-muted);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.mr-masonry-gallery__footer p {
+  margin: 0;
+  color: var(--mmg-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .mr-masonry-gallery {
+    padding: 72px 24px;
+  }
+
+  .mr-masonry-gallery__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .mr-masonry-gallery__intro {
+    max-width: 520px;
+  }
+
+  .mr-masonry-gallery__intro p {
+    margin-bottom: 12px;
+  }
+
+  .mr-masonry-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .mr-masonry-gallery__item--tall {
+    aspect-ratio: 0.9 / 1;
+  }
+
+  .mr-masonry-gallery__item--medium {
+    aspect-ratio: 0.95 / 1;
+  }
+
+  .mr-masonry-gallery__item--short {
+    aspect-ratio: 1.05 / 1;
+  }
+
+  .mr-masonry-gallery__item:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .mr-masonry-gallery__item:nth-child(even) {
+    margin-top: 28px;
+  }
+
+  .mr-masonry-gallery__footer {
+    grid-template-columns: auto 1fr;
+    row-gap: 14px;
+  }
+
+  .mr-masonry-gallery__footer p {
+    text-align: right;
+  }
+
+  .mr-masonry-gallery__footer-link {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .mr-masonry-gallery {
+    padding: 56px 16px;
+  }
+
+  .mr-masonry-gallery__header {
+    gap: 15px;
+    margin-bottom: 24px;
+  }
+
+  .mr-masonry-gallery__eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-masonry-gallery__title {
+    font-size: 35px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-masonry-gallery__intro p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-masonry-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .mr-masonry-gallery__item--tall {
+    aspect-ratio: 0.78 / 1;
+  }
+
+  .mr-masonry-gallery__item--medium {
+    aspect-ratio: 0.85 / 1;
+  }
+
+  .mr-masonry-gallery__item--short {
+    aspect-ratio: 0.9 / 1;
+  }
+
+  .mr-masonry-gallery__item:nth-child(n) {
+    margin-top: 0;
+  }
+
+  .mr-masonry-gallery__item:nth-child(even) {
+    margin-top: 22px;
+  }
+
+  .mr-masonry-gallery__caption {
+    right: 10px;
+    bottom: 12px;
+    left: 10px;
+    gap: 5px;
+  }
+
+  .mr-masonry-gallery__category {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .mr-masonry-gallery__name {
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  .mr-masonry-gallery__arrow {
+    top: 8px;
+    right: 8px;
+    width: 27px;
+    height: 27px;
+    font-size: 13px;
+  }
+
+  .mr-masonry-gallery__footer {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-top: 25px;
+    padding-top: 18px;
+  }
+
+  .mr-masonry-gallery__footer p {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    text-align: left;
+    font-size: 11px;
+  }
+
+  .mr-masonry-gallery__footer-link {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    font-size: 12px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-masonry-gallery *,
+  .mr-masonry-gallery *::before,
+  .mr-masonry-gallery *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="3imggallery">
+        <h2 class="title">3 Grid Gallery</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="3 grid gallery 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="3 grid gallery 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="3 grid gallery 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+
+                    <pre>
+&lt;section class="mr-gallery-preview" id="gallery"&gt;
+  &lt;div class="mr-gallery-preview__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-gallery-preview__header"&gt;
+      &lt;div class="mr-gallery-preview__heading"&gt;
+        &lt;span class="mr-gallery-preview__eyebrow"&gt;SELECTED WORK&lt;/span&gt;
+
+        &lt;h2 class="mr-gallery-preview__title"&gt;
+          A closer look at&lt;br&gt;what we create.
+        &lt;/h2&gt;
+      &lt;/div&gt;
+
+      &lt;div class="mr-gallery-preview__intro"&gt;
+        &lt;p&gt;
+          A selection of projects that reflect our approach to
+          thoughtful design, careful execution, and lasting quality.
+        &lt;/p&gt;
+
+        &lt;a href="#full-gallery" class="mr-gallery-preview__all-link"&gt;
+          View all projects &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Three-Image Grid --&gt;
+    &lt;div class="mr-gallery-preview__grid"&gt;
+
+      &lt;!-- Image 1 --&gt;
+      &lt;a href="#project-one"
+         class="mr-gallery-preview__item mr-gallery-preview__item--large"
+         aria-label="View the Studio Residence project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+          alt="Refined contemporary interior with neutral tones and natural materials"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-gallery-preview__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__caption"&gt;
+          &lt;span class="mr-gallery-preview__category"&gt;INTERIOR DESIGN&lt;/span&gt;
+          &lt;span class="mr-gallery-preview__name"&gt;Studio Residence&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Image 2 --&gt;
+      &lt;a href="#project-two"
+         class="mr-gallery-preview__item"
+         aria-label="View the Minimal Living project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+          alt="Minimal contemporary living space with warm finishes and natural light"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-gallery-preview__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__caption"&gt;
+          &lt;span class="mr-gallery-preview__category"&gt;RESIDENTIAL&lt;/span&gt;
+          &lt;span class="mr-gallery-preview__name"&gt;Minimal Living&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+      &lt;!-- Image 3 --&gt;
+      &lt;a href="#project-three"
+         class="mr-gallery-preview__item"
+         aria-label="View the Modern Retreat project"&gt;
+
+        &lt;img
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&amp;fit=crop&amp;w=900&amp;q=85"
+          alt="Modern architectural space with understated materials and elegant detailing"
+          loading="lazy"
+        &gt;
+
+        &lt;span class="mr-gallery-preview__overlay"&gt;&lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__caption"&gt;
+          &lt;span class="mr-gallery-preview__category"&gt;ARCHITECTURE&lt;/span&gt;
+          &lt;span class="mr-gallery-preview__name"&gt;Modern Retreat&lt;/span&gt;
+        &lt;/span&gt;
+
+        &lt;span class="mr-gallery-preview__arrow" aria-hidden="true"&gt;↗&lt;/span&gt;
+      &lt;/a&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Bottom Note --&gt;
+    &lt;div class="mr-gallery-preview__footer"&gt;
+      &lt;span&gt;01 — 03&lt;/span&gt;
+      &lt;p&gt;Selected projects, thoughtfully brought to life.&lt;/p&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* ====================================
+   MODERN REFINED — GALLERY PREVIEW
+==================================== */
+
+.mr-gallery-preview {
+  --mgp-bg: #faf9f6;
+  --mgp-text: #282c29;
+  --mgp-muted: #777a74;
+  --mgp-accent: #c7b397;
+  --mgp-border: #e7e3db;
+
+  width: 100%;
+  padding: 88px 24px;
+  box-sizing: border-box;
+  background: var(--mgp-bg);
+  color: var(--mgp-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-gallery-preview *,
+.mr-gallery-preview *::before,
+.mr-gallery-preview *::after {
+  box-sizing: border-box;
+}
+
+.mr-gallery-preview__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-gallery-preview__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 36px;
+  margin-bottom: 38px;
+}
+
+.mr-gallery-preview__heading {
+  max-width: 600px;
+}
+
+.mr-gallery-preview__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mgp-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+}
+
+.mr-gallery-preview__title {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -1.3px;
+}
+
+.mr-gallery-preview__intro {
+  width: 100%;
+  max-width: 340px;
+  padding-bottom: 3px;
+}
+
+.mr-gallery-preview__intro p {
+  margin: 0 0 20px;
+  color: var(--mgp-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.mr-gallery-preview__all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--mgp-border);
+  color: var(--mgp-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.mr-gallery-preview__all-link:hover {
+  color: #8d7454;
+  border-color: #8d7454;
+}
+
+/* Gallery Grid */
+
+.mr-gallery-preview__grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.mr-gallery-preview__item {
+  position: relative;
+  display: block;
+  min-width: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e8e3da;
+  color: #ffffff;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.mr-gallery-preview__item--large {
+  aspect-ratio: auto;
+  min-height: 430px;
+}
+
+.mr-gallery-preview__item img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  z-index: -2;
+}
+
+.mr-gallery-preview__item:hover img {
+  transform: scale(1.045);
+}
+
+.mr-gallery-preview__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(19, 22, 20, 0.78) 0%,
+    rgba(19, 22, 20, 0.24) 36%,
+    rgba(19, 22, 20, 0.02) 68%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.mr-gallery-preview__item:hover .mr-gallery-preview__overlay {
+  opacity: 0.88;
+}
+
+/* Image Captions */
+
+.mr-gallery-preview__caption {
+  position: absolute;
+  right: 22px;
+  bottom: 23px;
+  left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mr-gallery-preview__category {
+  color: #e2d1b8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+}
+
+.mr-gallery-preview__name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(19px, 2vw, 25px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.mr-gallery-preview__arrow {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 17px;
+  transition: background-color 0.25s ease,
+              color 0.25s ease;
+}
+
+.mr-gallery-preview__item:hover .mr-gallery-preview__arrow {
+  background: #ffffff;
+  color: var(--mgp-text);
+}
+
+.mr-gallery-preview__item:focus-visible,
+.mr-gallery-preview__all-link:focus-visible {
+  outline: 2px solid #947956;
+  outline-offset: 4px;
+}
+
+/* Footer */
+
+.mr-gallery-preview__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--mgp-border);
+}
+
+.mr-gallery-preview__footer &gt; span {
+  color: var(--mgp-muted);
+  font-size: 11px;
+  letter-spacing: 1.4px;
+}
+
+.mr-gallery-preview__footer p {
+  margin: 0;
+  color: var(--mgp-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .mr-gallery-preview {
+    padding: 72px 24px;
+  }
+
+  .mr-gallery-preview__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .mr-gallery-preview__intro {
+    max-width: 520px;
+  }
+
+  .mr-gallery-preview__intro p {
+    margin-bottom: 13px;
+  }
+
+  .mr-gallery-preview__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .mr-gallery-preview__item--large {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 8;
+    min-height: 0;
+  }
+
+  .mr-gallery-preview__item:not(.mr-gallery-preview__item--large) {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 520px) {
+  .mr-gallery-preview {
+    padding: 56px 16px;
+  }
+
+  .mr-gallery-preview__eyebrow {
+    margin-bottom: 13px;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+  }
+
+  .mr-gallery-preview__title {
+    font-size: 35px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-gallery-preview__header {
+    gap: 15px;
+    margin-bottom: 24px;
+  }
+
+  .mr-gallery-preview__intro p {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-gallery-preview__grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .mr-gallery-preview__item--large,
+  .mr-gallery-preview__item:not(.mr-gallery-preview__item--large) {
+    grid-column: auto;
+    aspect-ratio: 4 / 3;
+    min-height: 0;
+  }
+
+  .mr-gallery-preview__caption {
+    right: 17px;
+    bottom: 18px;
+    left: 17px;
+    gap: 6px;
+  }
+
+  .mr-gallery-preview__category {
+    font-size: 9px;
+    letter-spacing: 1.4px;
+  }
+
+  .mr-gallery-preview__name {
+    font-size: 22px;
+  }
+
+  .mr-gallery-preview__arrow {
+    top: 13px;
+    right: 13px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .mr-gallery-preview__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 18px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-gallery-preview *,
+  .mr-gallery-preview *::before,
+  .mr-gallery-preview *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+
+    <section class="container component-section " id="awardscredencial">
+        <h2 class="title">awards credencial</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="awards credencials 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="awards credencials 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="awards credencials 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-credentials-preview" aria-labelledby="mr-credentials-title"&gt;
+  &lt;div class="mr-credentials-preview__container"&gt;
+
+    &lt;!-- Section Heading --&gt;
+    &lt;div class="mr-credentials-preview__header"&gt;
+      &lt;span class="mr-credentials-preview__eyebrow"&gt;
+        TRUST &amp; EXPERIENCE
+      &lt;/span&gt;
+
+      &lt;h2 id="mr-credentials-title"&gt;
+        Experience built on &lt;em&gt;trust.&lt;/em&gt;
+      &lt;/h2&gt;
+
+      &lt;p&gt;
+        Recognised expertise, meaningful partnerships, and a
+        commitment to quality in every project.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Experience + Credentials --&gt;
+    &lt;div class="mr-credentials-preview__content"&gt;
+
+      &lt;div class="mr-credentials-preview__experience"&gt;
+        &lt;span class="mr-credentials-preview__label"&gt;
+          OUR EXPERIENCE
+        &lt;/span&gt;
+
+        &lt;div class="mr-credentials-preview__years"&gt;
+          10&lt;span&gt;+&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Years of dedicated experience&lt;/h3&gt;
+
+        &lt;p&gt;
+          Combining knowledge, attention to detail, and a
+          thoughtful approach to deliver dependable results.
+        &lt;/p&gt;
+
+        &lt;a href="#about" class="mr-credentials-preview__link"&gt;
+          Discover our story
+          &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class="mr-credentials-preview__credentials"&gt;
+        &lt;span class="mr-credentials-preview__label"&gt;
+          CREDENTIALS &amp; RECOGNITION
+        &lt;/span&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;01&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Professional Certification&lt;/h3&gt;
+            &lt;p&gt;Industry-recognised qualification&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;02&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Excellence in Service&lt;/h3&gt;
+            &lt;p&gt;Commitment to quality and care&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;03&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Trusted Partnerships&lt;/h3&gt;
+            &lt;p&gt;Long-term client relationships&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Client Logos / Partner Names --&gt;
+    &lt;div class="mr-credentials-preview__partners"&gt;
+      &lt;p class="mr-credentials-preview__partners-heading"&gt;
+        TRUSTED BY OUR CLIENTS &amp; PARTNERS
+      &lt;/p&gt;
+
+      &lt;div class="mr-credentials-preview__logos"
+           aria-label="Selected clients and partners"&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;NORTHLINE&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;FORMA&lt;span class="mr-credentials-preview__logo-light"&gt;®&lt;/span&gt;&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo mr-credentials-preview__logo-serif"&gt;Atelier Co.&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;MONOGRAPH&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo mr-credentials-preview__logo-serif"&gt;Willow &amp; Co.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =========================================
+   MODERN REFINED — CREDENTIALS PREVIEW
+   All styles are scoped to this component.
+========================================= */
+
+.mr-credentials-preview {
+  --mr-cp-bg: #fbfaf8;
+  --mr-cp-surface: #ffffff;
+  --mr-cp-text: #292923;
+  --mr-cp-muted: #77766f;
+  --mr-cp-border: #e8e5de;
+  --mr-cp-accent: #a17c52;
+
+  background: var(--mr-cp-bg);
+  color: var(--mr-cp-text);
+  padding: 76px 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-credentials-preview *,
+.mr-credentials-preview *::before,
+.mr-credentials-preview *::after {
+  box-sizing: border-box;
+}
+
+.mr-credentials-preview__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.mr-credentials-preview__header {
+  max-width: 640px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.mr-credentials-preview__eyebrow,
+.mr-credentials-preview__label {
+  display: inline-block;
+  color: var(--mr-cp-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.mr-credentials-preview__header h2 {
+  margin: 14px 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  letter-spacing: -1.3px;
+  line-height: 1.15;
+}
+
+.mr-credentials-preview__header h2 em {
+  color: var(--mr-cp-accent);
+  font-weight: 400;
+}
+
+.mr-credentials-preview__header &gt; p {
+  max-width: 490px;
+  margin: 0 auto;
+  color: var(--mr-cp-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Main two-column preview */
+
+.mr-credentials-preview__content {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  border: 1px solid var(--mr-cp-border);
+  background: var(--mr-cp-surface);
+}
+
+.mr-credentials-preview__experience {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 36px;
+  border-right: 1px solid var(--mr-cp-border);
+}
+
+.mr-credentials-preview__years {
+  margin: 22px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 7vw, 88px);
+  font-weight: 400;
+  letter-spacing: -5px;
+  line-height: 1;
+}
+
+.mr-credentials-preview__years span {
+  padding-left: 3px;
+  color: var(--mr-cp-accent);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 38px;
+  letter-spacing: -2px;
+  vertical-align: top;
+}
+
+.mr-credentials-preview__experience h3 {
+  margin: 12px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mr-credentials-preview__experience &gt; p {
+  margin: 0 0 22px;
+  color: var(--mr-cp-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.mr-credentials-preview__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  color: var(--mr-cp-text);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid var(--mr-cp-accent);
+  padding-bottom: 5px;
+  transition: color 180ms ease;
+}
+
+.mr-credentials-preview__link span {
+  color: var(--mr-cp-accent);
+  font-size: 16px;
+}
+
+.mr-credentials-preview__link:hover {
+  color: var(--mr-cp-accent);
+}
+
+.mr-credentials-preview__link:focus-visible {
+  outline: 2px solid var(--mr-cp-accent);
+  outline-offset: 5px;
+}
+
+/* Credentials list */
+
+.mr-credentials-preview__credentials {
+  padding: 36px;
+}
+
+.mr-credentials-preview__credentials &gt; .mr-credentials-preview__label {
+  margin-bottom: 14px;
+}
+
+.mr-credentials-preview__credential {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--mr-cp-border);
+}
+
+.mr-credentials-preview__credential:last-child {
+  border-bottom: 0;
+}
+
+.mr-credentials-preview__credential-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--mr-cp-border);
+  border-radius: 50%;
+  color: var(--mr-cp-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+}
+
+.mr-credentials-preview__credential h3 {
+  margin: 0 0 5px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.mr-credentials-preview__credential p {
+  margin: 0;
+  color: var(--mr-cp-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.mr-credentials-preview__check {
+  color: var(--mr-cp-accent);
+  font-size: 15px;
+}
+
+/* Client / partner wordmarks */
+
+.mr-credentials-preview__partners {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.mr-credentials-preview__partners-heading {
+  margin: 0 0 23px;
+  color: var(--mr-cp-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+}
+
+.mr-credentials-preview__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px 32px;
+}
+
+.mr-credentials-preview__logo {
+  color: #77766f;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  opacity: 0.85;
+}
+
+.mr-credentials-preview__logo-light {
+  color: var(--mr-cp-accent);
+  font-size: 9px;
+  vertical-align: top;
+}
+
+.mr-credentials-preview__logo-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+  .mr-credentials-preview {
+    padding: 60px 22px;
+  }
+
+  .mr-credentials-preview__content {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .mr-credentials-preview__experience,
+  .mr-credentials-preview__credentials {
+    padding: 28px;
+  }
+
+  .mr-credentials-preview__credential {
+    gap: 11px;
+  }
+
+  .mr-credentials-preview__logos {
+    gap: 22px 28px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .mr-credentials-preview {
+    padding: 46px 17px;
+  }
+
+  .mr-credentials-preview__header {
+    margin-bottom: 28px;
+  }
+
+  .mr-credentials-preview__header h2 {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-credentials-preview__header &gt; p {
+    font-size: 13px;
+  }
+
+  .mr-credentials-preview__content {
+    grid-template-columns: 1fr;
+  }
+
+  .mr-credentials-preview__experience {
+    padding: 26px 23px;
+    border-right: 0;
+    border-bottom: 1px solid var(--mr-cp-border);
+  }
+
+  .mr-credentials-preview__years {
+    margin-top: 17px;
+    font-size: 70px;
+  }
+
+  .mr-credentials-preview__experience h3 {
+    font-size: 19px;
+  }
+
+  .mr-credentials-preview__credentials {
+    padding: 26px 23px;
+  }
+
+  .mr-credentials-preview__credential {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 17px 0;
+  }
+
+  .mr-credentials-preview__credential-icon {
+    width: 29px;
+    height: 29px;
+    font-size: 11px;
+  }
+
+  .mr-credentials-preview__credential h3 {
+    font-size: 12px;
+  }
+
+  .mr-credentials-preview__credential p {
+    font-size: 10px;
+  }
+
+  .mr-credentials-preview__partners {
+    padding-top: 26px;
+  }
+
+  .mr-credentials-preview__partners-heading {
+    margin-bottom: 20px;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .mr-credentials-preview__logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    gap: 20px 12px;
+  }
+
+  .mr-credentials-preview__logo {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .mr-credentials-preview__logo-serif {
+    font-size: 16px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-credentials-preview__link {
+    transition: none;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="credentialist">
+        <h2 class="title">credencial list</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="credentials list 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="credentials list 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="credentials list 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-credentials" id="credentials"&gt;
+  &lt;div class="mr-credentials__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-credentials__header"&gt;
+      &lt;span class="mr-credentials__eyebrow"&gt;
+        EXPERIENCE &amp;amp; CREDENTIALS
+      &lt;/span&gt;
+
+      &lt;h2 class="mr-credentials__title"&gt;
+        The foundation&lt;br&gt;behind the work.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-credentials__intro"&gt;
+        A selection of qualifications, professional milestones,
+        and ongoing learning that shape our approach.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Credentials List --&gt;
+    &lt;div class="mr-credentials__list"&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2024&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;PROFESSIONAL EXPERIENCE&lt;/span&gt;
+          &lt;h3&gt;Web Design &amp;amp; Development&lt;/h3&gt;
+          &lt;p&gt;
+            Practical experience creating responsive websites,
+            user-focused layouts, and consistent digital experiences.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;01&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2023&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;EDUCATION&lt;/span&gt;
+          &lt;h3&gt;Relevant Degree or Qualification&lt;/h3&gt;
+          &lt;p&gt;
+            Add your degree, diploma, institution, or other
+            relevant educational qualification here.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;02&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2022&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;CERTIFICATION&lt;/span&gt;
+          &lt;h3&gt;Web Development Certification&lt;/h3&gt;
+          &lt;p&gt;
+            Add a relevant course or certification, including
+            the provider and the skills you developed.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;03&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;ONGOING&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;CONTINUOUS LEARNING&lt;/span&gt;
+          &lt;h3&gt;Skills &amp;amp; Industry Development&lt;/h3&gt;
+          &lt;p&gt;
+            Continued learning in modern web technologies,
+            accessibility, performance, and responsive design.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;04&lt;/span&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Footer Note --&gt;
+    &lt;footer class="mr-credentials__footer"&gt;
+      &lt;span class="mr-credentials__footer-line"&gt;&lt;/span&gt;
+      &lt;p&gt;Built on knowledge. Strengthened through practice.&lt;/p&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =================================
+   MODERN REFINED — CREDENTIALS LIST
+================================= */
+
+.mr-credentials {
+  --mcr-bg: #faf9f6;
+  --mcr-text: #292d29;
+  --mcr-muted: #777a74;
+  --mcr-accent: #947956;
+  --mcr-border: #e6e2d9;
+  --mcr-surface: #fffefa;
+
+  width: 100%;
+  padding: 86px 24px;
+  box-sizing: border-box;
+  background: var(--mcr-bg);
+  color: var(--mcr-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-credentials *,
+.mr-credentials *::before,
+.mr-credentials *::after {
+  box-sizing: border-box;
+}
+
+.mr-credentials__container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-credentials__header {
+  max-width: 650px;
+  margin-bottom: 43px;
+}
+
+.mr-credentials__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mcr-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.mr-credentials__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+
+.mr-credentials__intro {
+  max-width: 490px;
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Credentials List */
+
+.mr-credentials__list {
+  border-top: 1px solid var(--mcr-border);
+}
+
+.mr-credentials__item {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr) 36px;
+  align-items: start;
+  gap: 28px;
+  padding: 29px 10px;
+  border-bottom: 1px solid var(--mcr-border);
+  transition: background-color 0.25s ease,
+              padding 0.25s ease;
+}
+
+.mr-credentials__item:hover {
+  padding-right: 18px;
+  padding-left: 18px;
+  background: var(--mcr-surface);
+}
+
+/* Year */
+
+.mr-credentials__year {
+  padding-top: 3px;
+}
+
+.mr-credentials__year span {
+  display: inline-block;
+  color: var(--mcr-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* Main Content */
+
+.mr-credentials__content {
+  min-width: 0;
+}
+
+.mr-credentials__type {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: var(--mcr-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 1.6;
+}
+
+.mr-credentials__content h3 {
+  margin: 0 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mr-credentials__content p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+/* Number Marker */
+
+.mr-credentials__marker {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--mcr-border);
+  border-radius: 50%;
+  color: var(--mcr-muted);
+  font-size: 10px;
+  transition: border-color 0.25s ease,
+              color 0.25s ease;
+}
+
+.mr-credentials__item:hover .mr-credentials__marker {
+  border-color: var(--mcr-accent);
+  color: var(--mcr-accent);
+}
+
+/* Footer */
+
+.mr-credentials__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mr-credentials__footer-line {
+  display: block;
+  width: 25px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--mcr-accent);
+}
+
+.mr-credentials__footer p {
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .mr-credentials {
+    padding: 70px 24px;
+  }
+
+  .mr-credentials__header {
+    margin-bottom: 34px;
+  }
+
+  .mr-credentials__item {
+    grid-template-columns: 80px minmax(0, 1fr) 32px;
+    gap: 18px;
+    padding: 25px 6px;
+  }
+
+  .mr-credentials__item:hover {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .mr-credentials__content h3 {
+    font-size: 21px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-credentials {
+    padding: 55px 18px;
+  }
+
+  .mr-credentials__header {
+    margin-bottom: 27px;
+  }
+
+  .mr-credentials__eyebrow {
+    margin-bottom: 13px;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .mr-credentials__title {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-credentials__intro {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-credentials__item {
+    grid-template-columns: minmax(0, 1fr) 30px;
+    gap: 12px;
+    padding: 23px 0;
+  }
+
+  .mr-credentials__item:hover {
+    padding-right: 0;
+    padding-left: 0;
+    background: transparent;
+  }
+
+  .mr-credentials__year {
+    grid-column: 1;
+    padding: 0;
+  }
+
+  .mr-credentials__year span {
+    font-size: 15px;
+  }
+
+  .mr-credentials__content {
+    grid-column: 1;
+  }
+
+  .mr-credentials__type {
+    margin-bottom: 7px;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .mr-credentials__content h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .mr-credentials__content p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .mr-credentials__marker {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 29px;
+    height: 29px;
+    font-size: 9px;
+  }
+
+  .mr-credentials__footer {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .mr-credentials__footer p {
+    font-size: 11px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-credentials *,
+  .mr-credentials *::before,
+  .mr-credentials *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="experiencestats">
+        <h2 class="title">Experience Stats</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="experience stats 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="experience stats 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="experience stats 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-experience-stats" id="experience"&gt;
+  &lt;div class="mr-experience-stats__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-experience-stats__header"&gt;
+      &lt;span class="mr-experience-stats__eyebrow"&gt;
+        EXPERIENCE &amp;amp; CREDENTIALS
+      &lt;/span&gt;
+
+      &lt;h2 class="mr-experience-stats__title"&gt;
+        Experience built on&lt;br&gt;
+        thoughtful work.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-experience-stats__intro"&gt;
+        A commitment to quality, considered solutions, and
+        meaningful results for every project.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Statistics Grid --&gt;
+    &lt;div class="mr-experience-stats__grid"&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;08&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Years of Experience&lt;/h3&gt;
+        &lt;p&gt;Knowledge shaped through continued learning and practice.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;120&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Projects Completed&lt;/h3&gt;
+        &lt;p&gt;Ideas developed into thoughtful, practical solutions.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;45&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Happy Clients&lt;/h3&gt;
+        &lt;p&gt;Relationships built through communication and trust.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;98&lt;span&gt;%&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Client Satisfaction&lt;/h3&gt;
+        &lt;p&gt;A focus on quality, detail, and reliable delivery.&lt;/p&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Bottom Note --&gt;
+    &lt;footer class="mr-experience-stats__footer"&gt;
+      &lt;span class="mr-experience-stats__footer-line"&gt;&lt;/span&gt;
+      &lt;p&gt;Good work is measured by the value it creates.&lt;/p&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =====================================
+   MODERN REFINED — EXPERIENCE STATISTICS
+===================================== */
+
+.mr-experience-stats {
+  --mes-bg: #faf9f6;
+  --mes-text: #292d29;
+  --mes-muted: #777a74;
+  --mes-accent: #947956;
+  --mes-border: #e6e2d9;
+
+  width: 100%;
+  padding: 84px 24px;
+  box-sizing: border-box;
+  background: var(--mes-bg);
+  color: var(--mes-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-experience-stats *,
+.mr-experience-stats *::before,
+.mr-experience-stats *::after {
+  box-sizing: border-box;
+}
+
+.mr-experience-stats__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-experience-stats__header {
+  max-width: 650px;
+  margin-bottom: 44px;
+}
+
+.mr-experience-stats__eyebrow {
+  display: inline-block;
+  margin-bottom: 17px;
+  color: var(--mes-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.1px;
+}
+
+.mr-experience-stats__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+}
+
+.mr-experience-stats__intro {
+  max-width: 480px;
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Statistics Grid */
+
+.mr-experience-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--mes-border);
+  border-bottom: 1px solid var(--mes-border);
+}
+
+.mr-experience-stats__item {
+  min-width: 0;
+  padding: 31px 23px 32px;
+  border-right: 1px solid var(--mes-border);
+}
+
+.mr-experience-stats__item:first-child {
+  padding-left: 0;
+}
+
+.mr-experience-stats__item:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.mr-experience-stats__number {
+  display: block;
+  margin-bottom: 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
+
+.mr-experience-stats__number span {
+  margin-left: 2px;
+  color: var(--mes-accent);
+  font-size: 0.65em;
+  letter-spacing: 0;
+}
+
+.mr-experience-stats__item h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.mr-experience-stats__item p {
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Footer */
+
+.mr-experience-stats__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mr-experience-stats__footer-line {
+  display: block;
+  width: 25px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--mes-accent);
+}
+
+.mr-experience-stats__footer p {
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .mr-experience-stats {
+    padding: 70px 24px;
+  }
+
+  .mr-experience-stats__header {
+    margin-bottom: 35px;
+  }
+
+  .mr-experience-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-experience-stats__item {
+    padding: 27px 22px;
+    border-bottom: 1px solid var(--mes-border);
+  }
+
+  .mr-experience-stats__item:first-child,
+  .mr-experience-stats__item:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(2) {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(3) {
+    border-bottom: 0;
+  }
+
+  .mr-experience-stats__item:last-child {
+    padding-right: 0;
+    border-bottom: 0;
+  }
+
+  .mr-experience-stats__number {
+    font-size: 47px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-experience-stats {
+    padding: 55px 18px;
+  }
+
+  .mr-experience-stats__header {
+    margin-bottom: 28px;
+  }
+
+  .mr-experience-stats__eyebrow {
+    margin-bottom: 14px;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .mr-experience-stats__title {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-experience-stats__intro {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-experience-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-experience-stats__item {
+    padding: 22px 12px;
+  }
+
+  .mr-experience-stats__item:first-child,
+  .mr-experience-stats__item:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(2),
+  .mr-experience-stats__item:last-child {
+    padding-right: 0;
+  }
+
+  .mr-experience-stats__number {
+    margin-bottom: 13px;
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+
+  .mr-experience-stats__item h3 {
+    margin-bottom: 7px;
+    font-size: 12px;
+  }
+
+  .mr-experience-stats__item p {
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .mr-experience-stats__footer {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .mr-experience-stats__footer p {
+    font-size: 11px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-experience-stats *,
+  .mr-experience-stats *::before,
+  .mr-experience-stats *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+
+    <section class="container component-section " id="fullbanner">
+        <h2 class="title">full banner</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="full banner cta 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="full banner cta 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="full banner cta 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-credentials-preview" aria-labelledby="mr-credentials-title"&gt;
+  &lt;div class="mr-credentials-preview__container"&gt;
+
+    &lt;!-- Section Heading --&gt;
+    &lt;div class="mr-credentials-preview__header"&gt;
+      &lt;span class="mr-credentials-preview__eyebrow"&gt;
+        TRUST &amp; EXPERIENCE
+      &lt;/span&gt;
+
+      &lt;h2 id="mr-credentials-title"&gt;
+        Experience built on &lt;em&gt;trust.&lt;/em&gt;
+      &lt;/h2&gt;
+
+      &lt;p&gt;
+        Recognised expertise, meaningful partnerships, and a
+        commitment to quality in every project.
+      &lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Experience + Credentials --&gt;
+    &lt;div class="mr-credentials-preview__content"&gt;
+
+      &lt;div class="mr-credentials-preview__experience"&gt;
+        &lt;span class="mr-credentials-preview__label"&gt;
+          OUR EXPERIENCE
+        &lt;/span&gt;
+
+        &lt;div class="mr-credentials-preview__years"&gt;
+          10&lt;span&gt;+&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;h3&gt;Years of dedicated experience&lt;/h3&gt;
+
+        &lt;p&gt;
+          Combining knowledge, attention to detail, and a
+          thoughtful approach to deliver dependable results.
+        &lt;/p&gt;
+
+        &lt;a href="#about" class="mr-credentials-preview__link"&gt;
+          Discover our story
+          &lt;span aria-hidden="true"&gt;↗&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class="mr-credentials-preview__credentials"&gt;
+        &lt;span class="mr-credentials-preview__label"&gt;
+          CREDENTIALS &amp; RECOGNITION
+        &lt;/span&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;01&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Professional Certification&lt;/h3&gt;
+            &lt;p&gt;Industry-recognised qualification&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;02&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Excellence in Service&lt;/h3&gt;
+            &lt;p&gt;Commitment to quality and care&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials-preview__credential"&gt;
+          &lt;div class="mr-credentials-preview__credential-icon"
+               aria-hidden="true"&gt;03&lt;/div&gt;
+          &lt;div&gt;
+            &lt;h3&gt;Trusted Partnerships&lt;/h3&gt;
+            &lt;p&gt;Long-term client relationships&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;span class="mr-credentials-preview__check"
+                aria-hidden="true"&gt;✓&lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Client Logos / Partner Names --&gt;
+    &lt;div class="mr-credentials-preview__partners"&gt;
+      &lt;p class="mr-credentials-preview__partners-heading"&gt;
+        TRUSTED BY OUR CLIENTS &amp; PARTNERS
+      &lt;/p&gt;
+
+      &lt;div class="mr-credentials-preview__logos"
+           aria-label="Selected clients and partners"&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;NORTHLINE&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;FORMA&lt;span class="mr-credentials-preview__logo-light"&gt;®&lt;/span&gt;&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo mr-credentials-preview__logo-serif"&gt;Atelier Co.&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo"&gt;MONOGRAPH&lt;/span&gt;
+        &lt;span class="mr-credentials-preview__logo mr-credentials-preview__logo-serif"&gt;Willow &amp; Co.&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =========================================
+   MODERN REFINED — CREDENTIALS PREVIEW
+   All styles are scoped to this component.
+========================================= */
+
+.mr-credentials-preview {
+  --mr-cp-bg: #fbfaf8;
+  --mr-cp-surface: #ffffff;
+  --mr-cp-text: #292923;
+  --mr-cp-muted: #77766f;
+  --mr-cp-border: #e8e5de;
+  --mr-cp-accent: #a17c52;
+
+  background: var(--mr-cp-bg);
+  color: var(--mr-cp-text);
+  padding: 76px 24px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-credentials-preview *,
+.mr-credentials-preview *::before,
+.mr-credentials-preview *::after {
+  box-sizing: border-box;
+}
+
+.mr-credentials-preview__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.mr-credentials-preview__header {
+  max-width: 640px;
+  margin: 0 auto 42px;
+  text-align: center;
+}
+
+.mr-credentials-preview__eyebrow,
+.mr-credentials-preview__label {
+  display: inline-block;
+  color: var(--mr-cp-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.5;
+}
+
+.mr-credentials-preview__header h2 {
+  margin: 14px 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 400;
+  letter-spacing: -1.3px;
+  line-height: 1.15;
+}
+
+.mr-credentials-preview__header h2 em {
+  color: var(--mr-cp-accent);
+  font-weight: 400;
+}
+
+.mr-credentials-preview__header &gt; p {
+  max-width: 490px;
+  margin: 0 auto;
+  color: var(--mr-cp-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Main two-column preview */
+
+.mr-credentials-preview__content {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  border: 1px solid var(--mr-cp-border);
+  background: var(--mr-cp-surface);
+}
+
+.mr-credentials-preview__experience {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 36px;
+  border-right: 1px solid var(--mr-cp-border);
+}
+
+.mr-credentials-preview__years {
+  margin: 22px 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(64px, 7vw, 88px);
+  font-weight: 400;
+  letter-spacing: -5px;
+  line-height: 1;
+}
+
+.mr-credentials-preview__years span {
+  padding-left: 3px;
+  color: var(--mr-cp-accent);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 38px;
+  letter-spacing: -2px;
+  vertical-align: top;
+}
+
+.mr-credentials-preview__experience h3 {
+  margin: 12px 0 10px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mr-credentials-preview__experience &gt; p {
+  margin: 0 0 22px;
+  color: var(--mr-cp-muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.mr-credentials-preview__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  color: var(--mr-cp-text);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid var(--mr-cp-accent);
+  padding-bottom: 5px;
+  transition: color 180ms ease;
+}
+
+.mr-credentials-preview__link span {
+  color: var(--mr-cp-accent);
+  font-size: 16px;
+}
+
+.mr-credentials-preview__link:hover {
+  color: var(--mr-cp-accent);
+}
+
+.mr-credentials-preview__link:focus-visible {
+  outline: 2px solid var(--mr-cp-accent);
+  outline-offset: 5px;
+}
+
+/* Credentials list */
+
+.mr-credentials-preview__credentials {
+  padding: 36px;
+}
+
+.mr-credentials-preview__credentials &gt; .mr-credentials-preview__label {
+  margin-bottom: 14px;
+}
+
+.mr-credentials-preview__credential {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--mr-cp-border);
+}
+
+.mr-credentials-preview__credential:last-child {
+  border-bottom: 0;
+}
+
+.mr-credentials-preview__credential-icon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid var(--mr-cp-border);
+  border-radius: 50%;
+  color: var(--mr-cp-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 12px;
+}
+
+.mr-credentials-preview__credential h3 {
+  margin: 0 0 5px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.mr-credentials-preview__credential p {
+  margin: 0;
+  color: var(--mr-cp-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.mr-credentials-preview__check {
+  color: var(--mr-cp-accent);
+  font-size: 15px;
+}
+
+/* Client / partner wordmarks */
+
+.mr-credentials-preview__partners {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.mr-credentials-preview__partners-heading {
+  margin: 0 0 23px;
+  color: var(--mr-cp-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  line-height: 1.6;
+}
+
+.mr-credentials-preview__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px 32px;
+}
+
+.mr-credentials-preview__logo {
+  color: #77766f;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  opacity: 0.85;
+}
+
+.mr-credentials-preview__logo-light {
+  color: var(--mr-cp-accent);
+  font-size: 9px;
+  vertical-align: top;
+}
+
+.mr-credentials-preview__logo-serif {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 850px) {
+  .mr-credentials-preview {
+    padding: 60px 22px;
+  }
+
+  .mr-credentials-preview__content {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+
+  .mr-credentials-preview__experience,
+  .mr-credentials-preview__credentials {
+    padding: 28px;
+  }
+
+  .mr-credentials-preview__credential {
+    gap: 11px;
+  }
+
+  .mr-credentials-preview__logos {
+    gap: 22px 28px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .mr-credentials-preview {
+    padding: 46px 17px;
+  }
+
+  .mr-credentials-preview__header {
+    margin-bottom: 28px;
+  }
+
+  .mr-credentials-preview__header h2 {
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-credentials-preview__header &gt; p {
+    font-size: 13px;
+  }
+
+  .mr-credentials-preview__content {
+    grid-template-columns: 1fr;
+  }
+
+  .mr-credentials-preview__experience {
+    padding: 26px 23px;
+    border-right: 0;
+    border-bottom: 1px solid var(--mr-cp-border);
+  }
+
+  .mr-credentials-preview__years {
+    margin-top: 17px;
+    font-size: 70px;
+  }
+
+  .mr-credentials-preview__experience h3 {
+    font-size: 19px;
+  }
+
+  .mr-credentials-preview__credentials {
+    padding: 26px 23px;
+  }
+
+  .mr-credentials-preview__credential {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 17px 0;
+  }
+
+  .mr-credentials-preview__credential-icon {
+    width: 29px;
+    height: 29px;
+    font-size: 11px;
+  }
+
+  .mr-credentials-preview__credential h3 {
+    font-size: 12px;
+  }
+
+  .mr-credentials-preview__credential p {
+    font-size: 10px;
+  }
+
+  .mr-credentials-preview__partners {
+    padding-top: 26px;
+  }
+
+  .mr-credentials-preview__partners-heading {
+    margin-bottom: 20px;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .mr-credentials-preview__logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
+    gap: 20px 12px;
+  }
+
+  .mr-credentials-preview__logo {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .mr-credentials-preview__logo-serif {
+    font-size: 16px;
+  }
+}
+
+/* Reduced motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-credentials-preview__link {
+    transition: none;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="splitcta">
+        <h2 class="title">split cta</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="split cta 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="split cta 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="split cta 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-credentials" id="credentials"&gt;
+  &lt;div class="mr-credentials__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-credentials__header"&gt;
+      &lt;span class="mr-credentials__eyebrow"&gt;
+        EXPERIENCE &amp;amp; CREDENTIALS
+      &lt;/span&gt;
+
+      &lt;h2 class="mr-credentials__title"&gt;
+        The foundation&lt;br&gt;behind the work.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-credentials__intro"&gt;
+        A selection of qualifications, professional milestones,
+        and ongoing learning that shape our approach.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Credentials List --&gt;
+    &lt;div class="mr-credentials__list"&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2024&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;PROFESSIONAL EXPERIENCE&lt;/span&gt;
+          &lt;h3&gt;Web Design &amp;amp; Development&lt;/h3&gt;
+          &lt;p&gt;
+            Practical experience creating responsive websites,
+            user-focused layouts, and consistent digital experiences.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;01&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2023&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;EDUCATION&lt;/span&gt;
+          &lt;h3&gt;Relevant Degree or Qualification&lt;/h3&gt;
+          &lt;p&gt;
+            Add your degree, diploma, institution, or other
+            relevant educational qualification here.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;02&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;2022&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;CERTIFICATION&lt;/span&gt;
+          &lt;h3&gt;Web Development Certification&lt;/h3&gt;
+          &lt;p&gt;
+            Add a relevant course or certification, including
+            the provider and the skills you developed.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;03&lt;/span&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-credentials__item"&gt;
+        &lt;div class="mr-credentials__year"&gt;
+          &lt;span&gt;ONGOING&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;div class="mr-credentials__content"&gt;
+          &lt;span class="mr-credentials__type"&gt;CONTINUOUS LEARNING&lt;/span&gt;
+          &lt;h3&gt;Skills &amp;amp; Industry Development&lt;/h3&gt;
+          &lt;p&gt;
+            Continued learning in modern web technologies,
+            accessibility, performance, and responsive design.
+          &lt;/p&gt;
+        &lt;/div&gt;
+
+        &lt;span class="mr-credentials__marker" aria-hidden="true"&gt;04&lt;/span&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Footer Note --&gt;
+    &lt;footer class="mr-credentials__footer"&gt;
+      &lt;span class="mr-credentials__footer-line"&gt;&lt;/span&gt;
+      &lt;p&gt;Built on knowledge. Strengthened through practice.&lt;/p&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =================================
+   MODERN REFINED — CREDENTIALS LIST
+================================= */
+
+.mr-credentials {
+  --mcr-bg: #faf9f6;
+  --mcr-text: #292d29;
+  --mcr-muted: #777a74;
+  --mcr-accent: #947956;
+  --mcr-border: #e6e2d9;
+  --mcr-surface: #fffefa;
+
+  width: 100%;
+  padding: 86px 24px;
+  box-sizing: border-box;
+  background: var(--mcr-bg);
+  color: var(--mcr-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-credentials *,
+.mr-credentials *::before,
+.mr-credentials *::after {
+  box-sizing: border-box;
+}
+
+.mr-credentials__container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-credentials__header {
+  max-width: 650px;
+  margin-bottom: 43px;
+}
+
+.mr-credentials__eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--mcr-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.mr-credentials__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 52px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+
+.mr-credentials__intro {
+  max-width: 490px;
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Credentials List */
+
+.mr-credentials__list {
+  border-top: 1px solid var(--mcr-border);
+}
+
+.mr-credentials__item {
+  display: grid;
+  grid-template-columns: 105px minmax(0, 1fr) 36px;
+  align-items: start;
+  gap: 28px;
+  padding: 29px 10px;
+  border-bottom: 1px solid var(--mcr-border);
+  transition: background-color 0.25s ease,
+              padding 0.25s ease;
+}
+
+.mr-credentials__item:hover {
+  padding-right: 18px;
+  padding-left: 18px;
+  background: var(--mcr-surface);
+}
+
+/* Year */
+
+.mr-credentials__year {
+  padding-top: 3px;
+}
+
+.mr-credentials__year span {
+  display: inline-block;
+  color: var(--mcr-accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+/* Main Content */
+
+.mr-credentials__content {
+  min-width: 0;
+}
+
+.mr-credentials__type {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: var(--mcr-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 1.6;
+}
+
+.mr-credentials__content h3 {
+  margin: 0 0 9px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.mr-credentials__content p {
+  max-width: 620px;
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+/* Number Marker */
+
+.mr-credentials__marker {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--mcr-border);
+  border-radius: 50%;
+  color: var(--mcr-muted);
+  font-size: 10px;
+  transition: border-color 0.25s ease,
+              color 0.25s ease;
+}
+
+.mr-credentials__item:hover .mr-credentials__marker {
+  border-color: var(--mcr-accent);
+  color: var(--mcr-accent);
+}
+
+/* Footer */
+
+.mr-credentials__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mr-credentials__footer-line {
+  display: block;
+  width: 25px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--mcr-accent);
+}
+
+.mr-credentials__footer p {
+  margin: 0;
+  color: var(--mcr-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .mr-credentials {
+    padding: 70px 24px;
+  }
+
+  .mr-credentials__header {
+    margin-bottom: 34px;
+  }
+
+  .mr-credentials__item {
+    grid-template-columns: 80px minmax(0, 1fr) 32px;
+    gap: 18px;
+    padding: 25px 6px;
+  }
+
+  .mr-credentials__item:hover {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .mr-credentials__content h3 {
+    font-size: 21px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-credentials {
+    padding: 55px 18px;
+  }
+
+  .mr-credentials__header {
+    margin-bottom: 27px;
+  }
+
+  .mr-credentials__eyebrow {
+    margin-bottom: 13px;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .mr-credentials__title {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-credentials__intro {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-credentials__item {
+    grid-template-columns: minmax(0, 1fr) 30px;
+    gap: 12px;
+    padding: 23px 0;
+  }
+
+  .mr-credentials__item:hover {
+    padding-right: 0;
+    padding-left: 0;
+    background: transparent;
+  }
+
+  .mr-credentials__year {
+    grid-column: 1;
+    padding: 0;
+  }
+
+  .mr-credentials__year span {
+    font-size: 15px;
+  }
+
+  .mr-credentials__content {
+    grid-column: 1;
+  }
+
+  .mr-credentials__type {
+    margin-bottom: 7px;
+    font-size: 8px;
+    letter-spacing: 1.3px;
+  }
+
+  .mr-credentials__content h3 {
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 1.35;
+  }
+
+  .mr-credentials__content p {
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .mr-credentials__marker {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    width: 29px;
+    height: 29px;
+    font-size: 9px;
+  }
+
+  .mr-credentials__footer {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .mr-credentials__footer p {
+    font-size: 11px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-credentials *,
+  .mr-credentials *::before,
+  .mr-credentials *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container component-section " id="smallcta">
+        <h2 class="title">small cta</h2>
+        <!-- IMAGE PREVIEW -->
+        <div class="preview-panel">
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="small cta 1.png" alt="Navbar preview 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="small cta 2.png" alt="Navbar preview 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="small cta 3.png" alt="Navbar preview 3">
+                </div>
+            </div>
+        </div>
+
+        <!-- CODE ROW -->
+        <div class="code-grid">
+            <!-- HTML CODE -->
+            <div class="code">
+                <div class="code-heading">
+                    <h3>HTML</h3>
+                </div>
+                <div class="copy-container">
+<pre>
+&lt;section class="mr-experience-stats" id="experience"&gt;
+  &lt;div class="mr-experience-stats__container"&gt;
+
+    &lt;!-- Section Header --&gt;
+    &lt;header class="mr-experience-stats__header"&gt;
+      &lt;span class="mr-experience-stats__eyebrow"&gt;
+        EXPERIENCE &amp;amp; CREDENTIALS
+      &lt;/span&gt;
+
+      &lt;h2 class="mr-experience-stats__title"&gt;
+        Experience built on&lt;br&gt;
+        thoughtful work.
+      &lt;/h2&gt;
+
+      &lt;p class="mr-experience-stats__intro"&gt;
+        A commitment to quality, considered solutions, and
+        meaningful results for every project.
+      &lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Statistics Grid --&gt;
+    &lt;div class="mr-experience-stats__grid"&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;08&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Years of Experience&lt;/h3&gt;
+        &lt;p&gt;Knowledge shaped through continued learning and practice.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;120&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Projects Completed&lt;/h3&gt;
+        &lt;p&gt;Ideas developed into thoughtful, practical solutions.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;45&lt;span&gt;+&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Happy Clients&lt;/h3&gt;
+        &lt;p&gt;Relationships built through communication and trust.&lt;/p&gt;
+      &lt;/article&gt;
+
+      &lt;article class="mr-experience-stats__item"&gt;
+        &lt;span class="mr-experience-stats__number"&gt;98&lt;span&gt;%&lt;/span&gt;&lt;/span&gt;
+        &lt;h3&gt;Client Satisfaction&lt;/h3&gt;
+        &lt;p&gt;A focus on quality, detail, and reliable delivery.&lt;/p&gt;
+      &lt;/article&gt;
+
+    &lt;/div&gt;
+
+    &lt;!-- Bottom Note --&gt;
+    &lt;footer class="mr-experience-stats__footer"&gt;
+      &lt;span class="mr-experience-stats__footer-line"&gt;&lt;/span&gt;
+      &lt;p&gt;Good work is measured by the value it creates.&lt;/p&gt;
+    &lt;/footer&gt;
+
+  &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;style&gt;
+/* =====================================
+   MODERN REFINED — EXPERIENCE STATISTICS
+===================================== */
+
+.mr-experience-stats {
+  --mes-bg: #faf9f6;
+  --mes-text: #292d29;
+  --mes-muted: #777a74;
+  --mes-accent: #947956;
+  --mes-border: #e6e2d9;
+
+  width: 100%;
+  padding: 84px 24px;
+  box-sizing: border-box;
+  background: var(--mes-bg);
+  color: var(--mes-text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.mr-experience-stats *,
+.mr-experience-stats *::before,
+.mr-experience-stats *::after {
+  box-sizing: border-box;
+}
+
+.mr-experience-stats__container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.mr-experience-stats__header {
+  max-width: 650px;
+  margin-bottom: 44px;
+}
+
+.mr-experience-stats__eyebrow {
+  display: inline-block;
+  margin-bottom: 17px;
+  color: var(--mes-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.1px;
+}
+
+.mr-experience-stats__title {
+  margin: 0 0 17px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 4.5vw, 53px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.3px;
+}
+
+.mr-experience-stats__intro {
+  max-width: 480px;
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+/* Statistics Grid */
+
+.mr-experience-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--mes-border);
+  border-bottom: 1px solid var(--mes-border);
+}
+
+.mr-experience-stats__item {
+  min-width: 0;
+  padding: 31px 23px 32px;
+  border-right: 1px solid var(--mes-border);
+}
+
+.mr-experience-stats__item:first-child {
+  padding-left: 0;
+}
+
+.mr-experience-stats__item:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.mr-experience-stats__number {
+  display: block;
+  margin-bottom: 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -1.5px;
+}
+
+.mr-experience-stats__number span {
+  margin-left: 2px;
+  color: var(--mes-accent);
+  font-size: 0.65em;
+  letter-spacing: 0;
+}
+
+.mr-experience-stats__item h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.mr-experience-stats__item p {
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Footer */
+
+.mr-experience-stats__footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mr-experience-stats__footer-line {
+  display: block;
+  width: 25px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--mes-accent);
+}
+
+.mr-experience-stats__footer p {
+  margin: 0;
+  color: var(--mes-muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+  .mr-experience-stats {
+    padding: 70px 24px;
+  }
+
+  .mr-experience-stats__header {
+    margin-bottom: 35px;
+  }
+
+  .mr-experience-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-experience-stats__item {
+    padding: 27px 22px;
+    border-bottom: 1px solid var(--mes-border);
+  }
+
+  .mr-experience-stats__item:first-child,
+  .mr-experience-stats__item:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(2) {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(3) {
+    border-bottom: 0;
+  }
+
+  .mr-experience-stats__item:last-child {
+    padding-right: 0;
+    border-bottom: 0;
+  }
+
+  .mr-experience-stats__number {
+    font-size: 47px;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .mr-experience-stats {
+    padding: 55px 18px;
+  }
+
+  .mr-experience-stats__header {
+    margin-bottom: 28px;
+  }
+
+  .mr-experience-stats__eyebrow {
+    margin-bottom: 14px;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+
+  .mr-experience-stats__title {
+    font-size: 34px;
+    line-height: 1.18;
+    letter-spacing: -0.8px;
+  }
+
+  .mr-experience-stats__intro {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .mr-experience-stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mr-experience-stats__item {
+    padding: 22px 12px;
+  }
+
+  .mr-experience-stats__item:first-child,
+  .mr-experience-stats__item:nth-child(3) {
+    padding-left: 0;
+  }
+
+  .mr-experience-stats__item:nth-child(2),
+  .mr-experience-stats__item:last-child {
+    padding-right: 0;
+  }
+
+  .mr-experience-stats__number {
+    margin-bottom: 13px;
+    font-size: 38px;
+    letter-spacing: -1px;
+  }
+
+  .mr-experience-stats__item h3 {
+    margin-bottom: 7px;
+    font-size: 12px;
+  }
+
+  .mr-experience-stats__item p {
+    font-size: 11px;
+    line-height: 1.75;
+  }
+
+  .mr-experience-stats__footer {
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .mr-experience-stats__footer p {
+    font-size: 11px;
+  }
+}
+
+/* Reduced Motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .mr-experience-stats *,
+  .mr-experience-stats *::before,
+  .mr-experience-stats *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+&lt;/style&gt;
+</pre>
+                    
+                    <button class="copy-btn">Copy</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- COMPACT FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <a href="#" class="footer-brand">
+                <!-- Replace with your actual logo path -->
+                <img src="logo.png" alt="Weblytic Logo" onerror="this.style.display='none'">
+                <span>Weblytic</span>
+            </a>
+            <p class="footer-copyright">&copy; 2026 Weblytic. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+</body>
+</html>
